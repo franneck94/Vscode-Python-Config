@@ -7,8 +7,6 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
-    "debug.onTaskErrors": "debugAnyway",
-    "debug.javascript.suggestPrettyPrinting": false,
     // Explorer settings
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
@@ -27,31 +25,30 @@
         "*.ipynb": "jupyter-notebook"
     },
     "workbench.editor.untitled.hint": "hidden",
-     // Git settings
-     "git.enableSmartCommit": true,
-     "git.autofetch": true,
-     "git.confirmSync": false,
-     // Python settings
-     "python.linting.enabled": true,
-     "python.linting.lintOnSave": true,
-     "python.linting.flake8Enabled": true,
-     "python.linting.pylintEnabled": false,
-     "python.linting.mypyEnabled": true,
-     "python.formatting.provider": "autopep8",
-     "python.languageServer": "Pylance",
-     "autoDocstring.generateDocstringOnEnter": true,
-     "autoDocstring.quoteStyle": "'''",
-     "[python]": {
-         "editor.formatOnSave": false,
-         "editor.defaultFormatter": "ms-python.python"
-     },
-     // Jupyter Notebook
-     "jupyter.askForKernelRestart": false,
-     "jupyter.interactiveWindowMode": "perFile",
-     "jupyter.themeMatplotlibPlots": true,
-     "notebook.compactView": false,
-     "notebook.diff.ignoreMetadata": true,
-     "notebook.diff.ignoreOutputs": true,
+    // Git settings
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    // Python settings
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.mypyEnabled": true,
+    "python.formatting.provider": "autopep8",
+    "python.languageServer": "Pylance",
+    "autoDocstring.generateDocstringOnEnter": true,
+    "autoDocstring.quoteStyle": "'''",
+    "[python]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    // Jupyter Notebook
+    "jupyter.interactiveWindowMode": "perFile",
+    "jupyter.themeMatplotlibPlots": true,
+    "notebook.compactView": false,
+    "notebook.diff.ignoreMetadata": true,
+    "notebook.diff.ignoreOutputs": true,
     // IntelliSense AI Extension
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     // Other extensions
