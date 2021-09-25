@@ -1,5 +1,5 @@
 {
-    "name": "vscode-c-cpp-config",
+    "name": "vscode-python-config",
     "displayName": "Python Config",
     "description": "Creates all needed config files for simple Python projects.",
     "version": "0.1.0",
@@ -23,11 +23,11 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/franneck94/vscode-c-cpp-config.git"
+        "url": "https://github.com/franneck94/vscode-python-config.git"
     },
-    "homepage": "https://github.com/franneck94/vscode-c-cpp-config/README.md",
+    "homepage": "https://github.com/franneck94/vscode-python-config/README.md",
     "bugs": {
-        "url": "https://github.com/franneck94/vscode-c-cpp-config/issues"
+        "url": "https://github.com/franneck94/vscode-python-config/issues"
     },
     "activationEvents": [
         "*"
