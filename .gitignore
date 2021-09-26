@@ -9,3 +9,6 @@ package-lock.json
 *.cpuprofile
 *.log
 *.exe
+
+test/testAssets/Python/
+!test/testAssets/Python/main.py

@@ -9,7 +9,9 @@ Following files will be created in the local .vscode folder:
 
 Following files will be created in the root directory:
 
-- .editorconfig: Standard file settings (line-feed, insert new-line , etc.)
+- .editorconfig: Standard file settings (line-feed, insert new-line, etc.)
+- .gitattributes: Gives attributes to pathnames
+- .gitingore: Specifies intentionally untracked files to ignore
 - .pre-commit-config.yaml: Tools to run on every git commit
 - requirements-dev.txt: List of tools to install
 - setup.cfg: Settings for isort, flake8, mypy and pylint
