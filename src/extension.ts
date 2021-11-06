@@ -56,8 +56,6 @@ function initGeneratePythonommandDisposable(context: vscode.ExtensionContext) {
         const targetFilename = path.join(vscodePath, filename);
         const templateFilename = path.join(templatePath, filename);
 
-        if (pathExists(targetFilename)) return;
-
         const templateData = fs.readFileSync(templateFilename);
         fs.writeFileSync(targetFilename, templateData);
       });
@@ -67,8 +65,6 @@ function initGeneratePythonommandDisposable(context: vscode.ExtensionContext) {
 
         const targetFilename = path.join(workspaceFolder, filename);
         const templateFilename = path.join(templatePath, filename);
-
-        if (pathExists(targetFilename)) return;
 
         const templateData = fs.readFileSync(templateFilename);
         fs.writeFileSync(targetFilename, templateData);
