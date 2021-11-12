@@ -43,7 +43,6 @@
             {
                 "command": "Python_Config.generateConfigPython",
                 "title": "Generate Python Config Files",
-                "when": "Python_Config:activatedExtension",
                 "category": "Python Config"
             }
         ]
