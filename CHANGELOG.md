@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 1.1.0: November 22, 2021
+
+- **Info**: Added pyproject.toml for black configuration
+- **Info**: Updated git ignore
+
 ## Version 1.0.1: November 12, 2021
 
 - **Info**: Fixed issue with extension commands

@@ -12,12 +12,13 @@ let extensionPath: string | undefined;
 const EXTENSION_NAME = 'Python_Config';
 const VSCODE_DIR_FILES = ['launch.json', 'settings.json', 'tasks.json'];
 const ROOT_DIR_FILES = [
-  '.pre-commit-config.yaml',
   '.editorconfig',
-  'requirements-dev.txt',
-  'setup.cfg',
   '.gitattributes',
   '.gitignore',
+  '.pre-commit-config.yaml',
+  'pyproject.toml',
+  'requirements-dev.txt',
+  'setup.cfg',
 ];
 
 export function activate(context: vscode.ExtensionContext) {
