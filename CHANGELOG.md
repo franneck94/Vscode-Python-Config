@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 1.1.1: November 24, 2021
+
+- **Info**: Removed unused dependency
+
 ## Version 1.1.0: November 22, 2021
 
 - **Info**: Added pyproject.toml for black configuration
