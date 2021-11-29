@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 1.2.0: November 29, 2021
+
+- **Info**: Updated mypy settings
+
 ## Version 1.1.1: November 24, 2021
 
 - **Info**: Removed unused dependency
