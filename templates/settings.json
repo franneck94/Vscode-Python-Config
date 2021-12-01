@@ -22,7 +22,8 @@
     // Workbench settings
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+        "*.ipynb": "jupyter-notebook",
+        "*.md": "vscode.markdown.preview.editor"
     },
     "workbench.editor.untitled.hint": "hidden",
     // Git settings

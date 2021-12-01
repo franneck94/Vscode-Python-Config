@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 1.3.0: December 01, 2021
+
+- **Info**: Updated Markdown Render Mode
+
 ## Version 1.2.0: November 29, 2021
 
 - **Info**: Updated mypy settings
