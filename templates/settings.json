@@ -52,6 +52,6 @@
     "notebook.diff.ignoreOutputs": true,
     // IntelliSense AI Extension
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    // Other extensions
-    "formatContextMenu.closeAfterSave": true
+    // Formatter extensions
+    "Workspace_Formatter.includePattern": ["*.py"]
 }
