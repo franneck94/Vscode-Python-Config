@@ -1,8 +1,12 @@
 # Python Config Change Log
 
+## Version 1.4.1: January 11, 2022
+
+- **Bugfix**: Added try/catch for issues with creating .vscode folder.
+
 ## Version 1.4.0: December 16, 2021
 
-- **Info*: Updated settings
+- **Info**: Updated settings
 
 ## Version 1.3.0: December 01, 2021
 

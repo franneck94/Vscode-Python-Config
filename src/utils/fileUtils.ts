@@ -5,7 +5,9 @@ import * as path from 'path';
 export function mkdirRecursive(dir: string) {
   try {
     fs.mkdirSync(dir, { recursive: true });
-  } catch (err) {}
+  } catch (err) {
+    console.log((err as Error).message);
+  }
 }
 
 export function pathExists(filepath: string) {

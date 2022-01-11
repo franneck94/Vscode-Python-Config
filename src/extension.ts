@@ -34,14 +34,14 @@ export function activate(context: vscode.ExtensionContext) {
   workspaceFolder = vscode.workspace.workspaceFolders[0].uri.fsPath;
   extensionPath = context.extensionPath;
 
-  initGeneratePythonommandDisposable(context);
+  initGeneratePythonCommandDisposable(context);
 }
 
 export function deactivate() {
   disposeItem(generateCCommandDisposable);
 }
 
-function initGeneratePythonommandDisposable(context: vscode.ExtensionContext) {
+function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
   if (generateCCommandDisposable) return;
 
   const CommanddName = `${EXTENSION_NAME}.generateConfigPython`;
@@ -53,13 +53,22 @@ function initGeneratePythonommandDisposable(context: vscode.ExtensionContext) {
 
       if (!pathExists(vscodePath)) mkdirRecursive(vscodePath);
 
-      VSCODE_DIR_FILES.forEach((filename) => {
-        const targetFilename = path.join(vscodePath, filename);
-        const templateFilename = path.join(templatePath, filename);
+      // Still not exist due to somewhat mkdir error
+      if (!pathExists(vscodePath)) {
+        const message = 'Error: .vscode folder could not be generated.';
+        vscode.window.showErrorMessage(message);
+      } else {
+        VSCODE_DIR_FILES.forEach((filename) => {
+          const targetFilename = path.join(vscodePath, filename);
+          const templateFilename = path.join(templatePath, filename);
 
-        const templateData = fs.readFileSync(templateFilename);
-        fs.writeFileSync(targetFilename, templateData);
-      });
+          const templateData = fs.readFileSync(templateFilename);
+
+          try {
+            fs.writeFileSync(targetFilename, templateData);
+          } catch (err) {}
+        });
+      }
 
       ROOT_DIR_FILES.forEach((filename) => {
         if (!workspaceFolder) return;
@@ -68,7 +77,10 @@ function initGeneratePythonommandDisposable(context: vscode.ExtensionContext) {
         const templateFilename = path.join(templatePath, filename);
 
         const templateData = fs.readFileSync(templateFilename);
-        fs.writeFileSync(targetFilename, templateData);
+
+        try {
+          fs.writeFileSync(targetFilename, templateData);
+        } catch (err) {}
       });
     },
   );
