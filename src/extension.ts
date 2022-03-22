@@ -62,9 +62,9 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
           const targetFilename = path.join(vscodePath, filename);
           const templateFilename = path.join(templatePath, filename);
 
-          const templateData = fs.readFileSync(templateFilename);
-
           try {
+            const templateData = fs.readFileSync(templateFilename);
+
             fs.writeFileSync(targetFilename, templateData);
           } catch (err) {}
         });
@@ -76,9 +76,9 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
         const targetFilename = path.join(workspaceFolder, filename);
         const templateFilename = path.join(templatePath, filename);
 
-        const templateData = fs.readFileSync(templateFilename);
-
         try {
+          const templateData = fs.readFileSync(templateFilename);
+
           fs.writeFileSync(targetFilename, templateData);
         } catch (err) {}
       });
