@@ -1,11 +1,12 @@
 # VSCode Python Config
 
-Creates all needed config files for simple Python projects.  
+Creates all needed config files for Python projects.  
 
 Following files will be created in the local .vscode folder:
 
 - settings.json: Best default settings for Python related extensions
 - launch.json: Debug config to debug the current python file
+- tasks.json: Task to run the current python file
 
 Following files will be created in the root directory:
 
@@ -13,6 +14,7 @@ Following files will be created in the root directory:
 - .gitattributes: Gives attributes to pathnames
 - .gitingore: Specifies intentionally untracked files to ignore
 - .pre-commit-config.yaml: Tools to run on every git commit
+- pyproject.toml: Settings for the black formatter
 - requirements-dev.txt: List of tools to install
 - setup.cfg: Settings for isort, flake8, mypy and pylint
 
@@ -28,5 +30,5 @@ Refer to the [CHANGELOG](CHANGELOG.md).
 
 ## License
 
-Copyright (C) 2021 Jan Schaffranek.  
+Copyright (C) 2022 Jan Schaffranek.  
 Licensed under the [MIT License](LICENSE).
