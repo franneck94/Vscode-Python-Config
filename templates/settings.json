@@ -7,6 +7,7 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "explorer.compactFolders": false,
     // Explorer settings
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
@@ -14,7 +15,9 @@
     // Files settings
     "files.autoSave": "onFocusChange",
     "files.associations": {
-        "*.pyx": "python"
+        "*.pyd": "Cython",
+        "*.pyx": "Cython",
+        ".clang*": "yaml"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -23,7 +26,8 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook",
-        "*.md": "vscode.markdown.preview.editor"
+        "*.md": "vscode.markdown.preview.editor",
+        "*.svg": "svgPreviewer.customEditor"
     },
     "workbench.editor.untitled.hint": "hidden",
     // Git settings
@@ -41,10 +45,11 @@
     "autoDocstring.generateDocstringOnEnter": true,
     "autoDocstring.quoteStyle": "'''",
     "[python]": {
-        "editor.formatOnSave": false,
+        "editor.formatOnSave": true,
         "editor.defaultFormatter": "ms-python.python"
     },
     // Jupyter Notebook
+    "jupyter.useDefaultConfigForJupyter": true,
     "jupyter.interactiveWindowMode": "perFile",
     "jupyter.themeMatplotlibPlots": true,
     "notebook.compactView": false,
@@ -52,6 +57,26 @@
     "notebook.diff.ignoreOutputs": true,
     // IntelliSense AI Extension
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    // Formatter extensions
-    "Workspace_Formatter.includePattern": ["*.py"]
+    // Text
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false,
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 120
+    },
+    "[plaintext]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 120
+    },
+    // Other extensions
+    "codesnap.showWindowControls": false,
+    "codesnap.shutterAction": "copy",
+    "editor.cursorSmoothCaretAnimation": true,
+    "Workspace_Formatter.includePattern": ["*.py"],
+    "Workspace_Formatter.excludePattern": ["**/build", "**/.*", "**/.vscode"],
+    "svg.preview.autoOpen": true,
+    "errorLens.delay": 1000,
+    "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+    "errorLens.enabled": false
 }
