@@ -1,6 +1,6 @@
 # VSCode Python Config
 
-Creates all needed config files for Python projects.  
+Creates config files for modern Python projects.  
 
 Following files will be created in the local .vscode folder:
 

@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 1.6.0: March 27, 2022
+
+- **Info**: Updated black settings
+
 ## Version 1.5.0: March 22, 2022
 
 - **Info**: Updated settings and templates
