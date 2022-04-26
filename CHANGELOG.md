@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 1.7.0: April 26, 2022
+
+- **Info**: Updated tasks.json file
+
 ## Version 1.6.0: March 27, 2022
 
 - **Info**: Updated black settings

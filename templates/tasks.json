@@ -4,7 +4,7 @@
         {
             "label": "Python: Current File",
             "type": "shell",
-            "command": "python ${file}",
+            "command": "${command:python.interpreterPath} ${file}",
             "args": [],
             "group": "build"
         }

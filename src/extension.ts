@@ -25,8 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
   if (
     !vscode.workspace.workspaceFolders ||
     vscode.workspace.workspaceFolders.length !== 1 ||
-    !vscode.workspace.workspaceFolders[0] ||
-    !vscode.workspace.workspaceFolders[0].uri
+    !vscode.workspace.workspaceFolders[0]
   ) {
     return;
   }
@@ -51,24 +50,30 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
       const { templatePath, vscodePath } = getFilepaths();
       if (!templatePath || !vscodePath) return;
 
-      if (!pathExists(vscodePath)) mkdirRecursive(vscodePath);
-
-      // Still not exist due to somewhat mkdir error
       if (!pathExists(vscodePath)) {
-        const message = 'Error: .vscode folder could not be generated.';
-        vscode.window.showErrorMessage(message);
-      } else {
-        VSCODE_DIR_FILES.forEach((filename) => {
-          const targetFilename = path.join(vscodePath, filename);
-          const templateFilename = path.join(templatePath, filename);
+        const successful = mkdirRecursive(vscodePath);
 
-          try {
-            const templateData = fs.readFileSync(templateFilename);
-
-            fs.writeFileSync(targetFilename, templateData);
-          } catch (err) {}
-        });
+        if (!successful) {
+          vscode.window.showErrorMessage('Could not create .vscode folder.');
+          return;
+        }
       }
+
+      VSCODE_DIR_FILES.forEach((filename) => {
+        const targetFilename = path.join(vscodePath, filename);
+        const templateFilename = path.join(templatePath, filename);
+
+        try {
+          const templateData = fs.readFileSync(templateFilename);
+
+          fs.writeFileSync(targetFilename, templateData);
+        } catch (err) {
+          vscode.window.showErrorMessage(
+            `Could not write file ${targetFilename}.`,
+          );
+          return;
+        }
+      });
 
       ROOT_DIR_FILES.forEach((filename) => {
         if (!workspaceFolder) return;
@@ -80,7 +85,12 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
           const templateData = fs.readFileSync(templateFilename);
 
           fs.writeFileSync(targetFilename, templateData);
-        } catch (err) {}
+        } catch (err) {
+          vscode.window.showErrorMessage(
+            `Could not write file ${targetFilename}.`,
+          );
+          return;
+        }
       });
     },
   );
