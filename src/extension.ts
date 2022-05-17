@@ -76,15 +76,27 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
       });
 
       ROOT_DIR_FILES.forEach((filename) => {
+        let skipFile = false;
+
         if (!workspaceFolder) return;
 
         const targetFilename = path.join(workspaceFolder, filename);
         const templateFilename = path.join(templatePath, filename);
 
-        try {
-          const templateData = fs.readFileSync(templateFilename);
+        if (filename === 'requirements-dev.txt') {
+          const reqFilename = path.join(workspaceFolder, 'requirements.txt');
 
-          fs.writeFileSync(targetFilename, templateData);
+          if (pathExists(reqFilename)) {
+            skipFile = true;
+          }
+        }
+
+        try {
+          if (!skipFile) {
+            const templateData = fs.readFileSync(templateFilename);
+
+            fs.writeFileSync(targetFilename, templateData);
+          }
         } catch (err) {
           vscode.window.showErrorMessage(
             `Could not write file ${targetFilename}.`,

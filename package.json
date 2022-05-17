@@ -2,7 +2,7 @@
     "name": "vscode-python-config",
     "displayName": "Python Config",
     "description": "Creates config files for modern Python projects",
-    "version": "1.7.0",
+    "version": "1.8.0",
     "publisher": "franneck94",
     "license": "MIT",
     "icon": "icon.png",
@@ -11,7 +11,7 @@
         "theme": "dark"
     },
     "engines": {
-        "vscode": "^1.65.0"
+        "vscode": "^1.67.0"
     },
     "categories": [
         "Programming Languages",

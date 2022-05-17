@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 1.8.0: May 17, 2022
+
+- **Info**: Updated pre_commit entries
+- **Info**: Only create **requirements-dev.txt** if no **requirements.txt** is present
+
 ## Version 1.7.0: April 26, 2022
 
 - **Info**: Updated tasks.json file
