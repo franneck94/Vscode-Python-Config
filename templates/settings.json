@@ -15,8 +15,7 @@
     // Files settings
     "files.autoSave": "onFocusChange",
     "files.associations": {
-        "*.pyd": "Cython",
-        "*.pyx": "Cython",
+        "*.pyx": "cython",
         ".clang*": "yaml"
     },
     "files.insertFinalNewline": true,

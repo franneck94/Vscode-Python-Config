@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 1.8.1: May 21, 2022
+
+- **Info**: Fixed cython issue
+
 ## Version 1.8.0: May 17, 2022
 
 - **Info**: Updated pre_commit entries
