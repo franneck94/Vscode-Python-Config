@@ -1,0 +1,15 @@
+{
+    "[typescript]": {
+        "editor.formatOnSave": true
+    },
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.formatOnSave": true
+    },
+    "[jsonc]": {
+        "editor.formatOnSave": true
+    },
+    "importSorter.generalConfiguration.sortOnBeforeSave": true
+}

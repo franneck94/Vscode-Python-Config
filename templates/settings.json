@@ -1,0 +1,132 @@
+{
+    // Editor settings
+    "editor.tabSize": 4,
+    "editor.rulers": [80, 120],
+    "editor.renderWhitespace": "trailing",
+    "editor.suggestSelection": "first",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.bracketPairColorization.enabled": false,
+    // terminal
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    // Debug
+    "debug.onTaskErrors": "debugAnyway",
+    // Explorer settings
+    "explorer.compactFolders": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "explorer.copyRelativePathSeparator": "/",
+    // Files settings
+    "files.autoSave": "onFocusChange",
+    "files.exclude": {
+        "node_modules/**/*": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "files.associations": {
+        "*.pyd": "cython",
+        "*.pyx": "cython",
+        ".clang*": "yaml",
+        "*.gpj": "jsonc",
+        "*.gvw": "jsonc"
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    // workbench
+    "workbench.startupEditor": "none",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook",
+        "*.md": "vscode.markdown.preview.editor",
+        "*.svg": "svgPreviewer.customEditor"
+    },
+    "workbench.editor.untitled.hint": "hidden",
+    // Git settings
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    // Python settings
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.flake8Enabled": false,
+    "python.linting.mypyEnabled": true,
+    "python.formatting.provider": "black",
+    "python.languageServer": "Pylance",
+    "python.analysis.autoFormatStrings": true,
+    "autoDocstring.generateDocstringOnEnter": true,
+    "autoDocstring.quoteStyle": "'''",
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "black-formatter.importStrategy": "fromEnvironment",
+    "isort.importStrategy": "fromEnvironment",
+    "isort.check": true,
+    "ruff.fixAll": false,
+    "ruff.organizeImports": false,
+    // Jupyter Notebook
+    "jupyter.askForKernelRestart": false,
+    "jupyter.useDefaultConfigForJupyter": true,
+    "jupyter.themeMatplotlibPlots": true,
+    "notebook.compactView": false,
+    "notebook.diff.ignoreMetadata": true,
+    "notebook.diff.ignoreOutputs": true,
+    "notebook.formatOnSave.enabled": true,
+    "notebook.output.textLineLimit": 20,
+    // markdown
+    "markdown.validate.enabled": true,
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false,
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+        "editor.wordWrap": "wordWrapColumn"
+    },
+    // Different languages
+    "[yaml]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[json]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.formatOnSave": false
+    },
+    "[plaintext]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 120
+    },
+    // BetterComments
+    "better-comments.tags": [
+        {
+            "tag": "XXX",
+            "color": "#F8C471"
+        },
+        {
+            "tag": "WARN",
+            "color": "#FF6961"
+        },
+        {
+            "tag": "NOTE",
+            "color": "#3498DB"
+        },
+        {
+            "tag": "TODO",
+            "color": "#77C3EC"
+        }
+    ],
+    // other extensions
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "codesnap.showWindowControls": false,
+    "codesnap.shutterAction": "copy",
+    "Workspace_Formatter.includePattern": ["*.py"],
+    "Workspace_Formatter.excludePattern": ["**/build", "**/.*", "**/.vscode"],
+    "svg.preview.autoOpen": true,
+    "errorLens.delay": 1000,
+    "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+    "errorLens.enabled": false
+}

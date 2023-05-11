@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Python: Current File",
+            "type": "shell",
+            "command": "${command:python.interpreterPath} ${file}",
+            "args": [],
+            "group": "build"
+        },
+        // The example below can be used to always run the same file
+        {
+            "label": "Python: Main File",
+            "type": "shell",
+            "command": "${command:python.interpreterPath} ${workspaceFolder}/main.py",
+            "args": [],
+            "group": "build"
+        }
+    ]
+}

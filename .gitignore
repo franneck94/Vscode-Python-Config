@@ -1,0 +1,14 @@
+node_modules
+dist/
+out/
+build/
+.mypy_cache
+.vscode-test
+package-lock.json
+*.vsix
+*.cpuprofile
+*.log
+*.exe
+
+tests/Project/
+!tests/Project/main.py
