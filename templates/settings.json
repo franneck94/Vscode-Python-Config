@@ -57,7 +57,8 @@
     "python.languageServer": "Pylance",
     "python.analysis.autoFormatStrings": true,
     "autoDocstring.generateDocstringOnEnter": true,
-    "autoDocstring.quoteStyle": "'''",
+    "autoDocstring.quoteStyle": "\"\"\"",
+    "autoDocstring.docstringFormat": "numpy",
     "[python]": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "ms-python.python"

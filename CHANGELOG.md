@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 3.7.0: May 22, 2023
+
+- **Info**: Updated autoDocstring settings
+
 ## Version 3.6.0: May 10, 2023
 
 - **Info**: Updated ruff
