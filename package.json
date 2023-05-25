@@ -2,7 +2,7 @@
     "name": "vscode-python-config",
     "displayName": "Python Config",
     "description": "Creates config files for modern Python projects",
-    "version": "3.7.0",
+    "version": "3.8.0",
     "publisher": "franneck94",
     "license": "MIT",
     "icon": "icon.png",
@@ -60,6 +60,19 @@
                     "type": "boolean",
                     "default": false,
                     "description": "If tools like mypy and ruff should be harsh with your code.",
+                    "scope": "machine"
+                },
+                "Python_Config.pythonVersion": {
+                    "type": "string",
+                    "enum": [
+                        "3.7",
+                        "3.8",
+                        "3.9",
+                        "3.10",
+                        "3.11"
+                    ],
+                    "default": "3.9",
+                    "description": "The python target version for the tools.",
                     "scope": "machine"
                 }
             }

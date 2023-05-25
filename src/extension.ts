@@ -29,6 +29,7 @@ const ROOT_DIR_FILES = [
 
 let LINE_LENGTH: number = 120;
 let IS_AGGRESSIVE: boolean = false;
+let PY_TARGET: string = '3.9';
 
 export function activate(context: vscode.ExtensionContext) {
   if (
@@ -54,6 +55,7 @@ export function deactivate() {
 function getCurrentGlobalSettings() {
   IS_AGGRESSIVE = getGlobalSetting(EXTENSION_NAME, 'aggressiveSettings', false);
   LINE_LENGTH = getGlobalSetting(EXTENSION_NAME, 'lineLength', 120);
+  PY_TARGET = getGlobalSetting(EXTENSION_NAME, 'pythonVersion', '3.9');
 }
 
 function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
@@ -184,6 +186,31 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
                 line.startsWith('ignore-fully-untyped')
               ) {
                 return 'ignore-fully-untyped = false';
+              } else if (
+                PY_TARGET !== '3.9' &&
+                line.startsWith("target-version = ['py39']")
+              ) {
+                return `target-version = ['py${PY_TARGET.replace('.', '')}']`;
+              } else if (
+                PY_TARGET !== '3.9' &&
+                line.startsWith('py_version = 39')
+              ) {
+                return `py_version = ${PY_TARGET.replace('.', '')}`;
+              } else if (
+                PY_TARGET !== '3.9' &&
+                line.startsWith('python_version = "3.9"')
+              ) {
+                return `python_version = "${PY_TARGET}"`;
+              } else if (
+                PY_TARGET !== '3.9' &&
+                line.startsWith('target-version = "py39"')
+              ) {
+                return `target-version = "py${PY_TARGET.replace('.', '')}"`;
+              } else if (
+                PY_TARGET !== '3.9' &&
+                line.startsWith('pythonVersion = "3.9"')
+              ) {
+                return `pythonVersion = "${PY_TARGET}"`;
               } else {
                 return line;
               }

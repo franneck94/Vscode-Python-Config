@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 3.8.0: May 25, 2023
+
+- **Info**: Updated python settings, added pyright config
+- **Info**: Added pythonVersion setting
+
 ## Version 3.7.0: May 22, 2023
 
 - **Info**: Updated autoDocstring settings
