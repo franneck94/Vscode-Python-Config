@@ -1,4 +1,6 @@
 setuptools>=67.8.0
+build>=0.10.0
+twine>=4.0.0
 
 # Linting/Tooling
 black>=23.3.0
@@ -7,3 +9,16 @@ mypy>=1.3.0
 pre-commit>=3.3.2
 ruff>=0.0.270
 pyright>=1.1.309
+
+# Testing
+pytest>=7.3.1
+codecov>=2.1.13
+pytest-cov>=4.1.0
+pytest-benchmark>=4.0.0
+
+# Documentation
+mkdocs>=1.4.3
+mkdocstrings>=0.21.2
+mkdocstrings[python]>=0.9.0
+mkdocs-material>=9.1.14
+Pygments>=2.15.1
