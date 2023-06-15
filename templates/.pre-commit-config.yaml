@@ -41,10 +41,10 @@ repos:
         exclude: ^docs/
 
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: 'v0.0.270'
+    rev: 'v0.0.272'
     hooks:
     -   id: ruff
-        # args: [ --fix, --exit-non-zero-on-fix ]
+        args: [ --fix, --exit-non-zero-on-fix ]
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.3.0

@@ -137,4 +137,4 @@ reportOptionalMemberAccess = false
 reportOptionalOperand = false
 reportOptionalSubscript = false
 reportPrivateImportUsage = false
-reportUnboundVariable = false
+reportUnboundVariable = true
