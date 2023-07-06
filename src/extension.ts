@@ -32,6 +32,8 @@ const IS_AGGRESSIVE_DEFAULT = false;
 const PY_TARGET_DEFAULT = '3.9';
 const FORMATTING_TOOL_DEFAULT = 'black';
 
+const CURR_AUTOPEP8_VERSIONS = '2.0.2';
+
 let LINE_LENGTH: number = LINE_LENGTH_DEFAULT;
 let IS_AGGRESSIVE: boolean = IS_AGGRESSIVE_DEFAULT;
 let PY_TARGET: string = PY_TARGET_DEFAULT;
@@ -118,6 +120,12 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
               templateData['editor.rulers'] = [80];
             } else {
               templateData['editor.rulers'] = [80, 120];
+            }
+
+            if (FORMATTING_TOOL.toLowerCase() === 'autopep8') {
+              templateData['python.formatting.provider'] = 'autopep8';
+            } else {
+              templateData['python.formatting.provider'] = 'black';
             }
 
             if (IS_AGGRESSIVE) {
@@ -243,9 +251,45 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
           } else if (filename === '.pre-commit-config.yaml') {
             const data = templateData.toString().split('\n');
 
+            let was_formatter = false;
+
             const modifiedData = data.map((line: string) => {
               if (IS_AGGRESSIVE && line.includes('# args:')) {
                 return `        args: [ --fix, --exit-non-zero-on-fix ]`;
+              } else if (
+                FORMATTING_TOOL.toLowerCase() === 'autopep8' &&
+                line.includes('https://github.com/psf/black')
+              ) {
+                was_formatter = true;
+                return `-   repo: https://github.com/pre-commit/mirrors-autopep8`;
+              } else if (was_formatter) {
+                was_formatter = false;
+                return `    rev: 'v${CURR_AUTOPEP8_VERSIONS}'`;
+              } else if (
+                FORMATTING_TOOL.toLowerCase() === 'autopep8' &&
+                line.includes('id: black')
+              ) {
+                return '    -   id: autopep8';
+              } else if (
+                FORMATTING_TOOL.toLowerCase() === 'autopep8' &&
+                line.includes('id: nbqa-black')
+              ) {
+                return '    -   id: autopep8';
+              } else {
+                return line;
+              }
+            });
+
+            templateData = Buffer.from(modifiedData.join('\r\n'), 'utf8');
+          } else if (filename === 'requirements-dev.txt') {
+            const data = templateData.toString().split('\n');
+
+            const modifiedData = data.map((line: string) => {
+              if (
+                FORMATTING_TOOL.toLowerCase() === 'autopep8' &&
+                line.includes('black')
+              ) {
+                return `autopep8>=${CURR_AUTOPEP8_VERSIONS}`;
               } else {
                 return line;
               }
