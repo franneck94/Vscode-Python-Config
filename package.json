@@ -2,7 +2,7 @@
     "name": "vscode-python-config",
     "displayName": "Python Config",
     "description": "Creates config files for modern Python projects",
-    "version": "3.9.0",
+    "version": "3.11.0",
     "publisher": "franneck94",
     "license": "MIT",
     "icon": "icon.png",
@@ -73,6 +73,16 @@
                     ],
                     "default": "3.9",
                     "description": "The python target version for the tools.",
+                    "scope": "machine"
+                },
+                "Python_Config.formattingTool": {
+                    "type": "string",
+                    "enum": [
+                        "black",
+                        "autopep8"
+                    ],
+                    "default": "black",
+                    "description": "The python formatter that should be used.",
                     "scope": "machine"
                 }
             }

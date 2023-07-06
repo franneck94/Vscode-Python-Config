@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 3.11.0: Jul 6, 2023
+
+- **Info**: Updated some versions
+
 ## Version 3.10.0: Jun 15, 2023
 
 - **Info**: Updated some settings and versions
