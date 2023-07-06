@@ -156,6 +156,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
 
             const modifiedData = data.map((line: string) => {
               if (line.includes('line-length')) {
+                // START: GENERAL
                 return `line-length = ${LINE_LENGTH}`;
               }
               if (line.includes('line_length')) {
@@ -165,6 +166,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
               } else if (IS_AGGRESSIVE && line.includes('ignore=')) {
                 return 'ignore=';
               } else if (
+                // START: MYPY
                 IS_AGGRESSIVE &&
                 line.startsWith('check_untyped_defs')
               ) {
@@ -192,19 +194,10 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
               ) {
                 return `no_implicit_optional = true`;
               } else if (IS_AGGRESSIVE && line.startsWith('fixable')) {
+                // START: RUFF
                 return 'fixable = ["F", "E", "W", "UP", "B", "A", "C4"]';
               } else if (IS_AGGRESSIVE && line.startsWith('unfixable')) {
                 return 'unfixable = []';
-              } else if (
-                IS_AGGRESSIVE &&
-                line.includes('skip-string-normalization')
-              ) {
-                return 'skip-string-normalization = false';
-              } else if (
-                IS_AGGRESSIVE &&
-                line.includes('skip-magic-trailing-comma')
-              ) {
-                return 'skip-magic-trailing-comma = false';
               } else if (IS_AGGRESSIVE && line.startsWith('ignore = ')) {
                 return 'ignore = ["SIM300"]';
               } else if (
@@ -218,11 +211,23 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
               ) {
                 return 'ignore-fully-untyped = false';
               } else if (
+                // START: BLACK
+                IS_AGGRESSIVE &&
+                line.includes('skip-string-normalization')
+              ) {
+                return 'skip-string-normalization = false';
+              } else if (
+                IS_AGGRESSIVE &&
+                line.includes('skip-magic-trailing-comma')
+              ) {
+                return 'skip-magic-trailing-comma = false';
+              } else if (
                 PY_TARGET !== '3.9' &&
                 line.startsWith("target-version = ['py39']")
               ) {
                 return `target-version = ['py${PY_TARGET.replace('.', '')}']`;
               } else if (
+                // START: VERSIONS
                 PY_TARGET !== '3.9' &&
                 line.startsWith('py_version = 39')
               ) {
