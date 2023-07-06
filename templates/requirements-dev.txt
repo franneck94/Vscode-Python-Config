@@ -1,17 +1,17 @@
-setuptools>=67.8.0
+setuptools>=68.0.0
 build>=0.10.0
 twine>=4.0.0
 
 # Linting/Tooling
 black>=23.3.0
 isort>=5.12.0
-mypy>=1.3.0
+mypy>=1.4.1
 pre-commit>=3.3.3
-ruff>=0.0.272
+ruff>=0.0.277
 pyright>=1.1.309
 
 # Testing
-pytest>=7.3.2
+pytest>=7.4.0
 codecov>=2.1.13
 pytest-cov>=4.1.0
 pytest-benchmark>=4.0.0
@@ -20,5 +20,5 @@ pytest-benchmark>=4.0.0
 mkdocs>=1.4.3
 mkdocstrings>=0.22.0
 mkdocstrings[python]>=0.9.0
-mkdocs-material>=9.1.15
+mkdocs-material>=9.1.18
 Pygments>=2.15.1
