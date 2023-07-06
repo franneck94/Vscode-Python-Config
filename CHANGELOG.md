@@ -1,8 +1,9 @@
 # Python Config Change Log
 
-## Version 3.11.0: Jul 6, 2023
+## Version 4.0.0: Jul 6, 2023
 
 - **Info**: Updated some versions
+- **Info**: Added "formatter" setting to choose either "black" or "autopep8"
 
 ## Version 3.10.0: Jun 15, 2023
 
