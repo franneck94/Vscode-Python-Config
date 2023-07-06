@@ -1,0 +1,6 @@
+[tool.ruff]
+select = ["F", "E"]
+extend-select = ["W", "N", "UP", "B", "A", "C4", "PT", "SIM", "PD", "PLE", "RUF"]
+ignore = ["F401", "E402", "UP006", "UP007", "UP035", "UP038", "B905", "SIM300", "PD901"]
+fixable = ["F", "E", "W"]
+unfixable = ["UP", "B", "A", "C4", "PT", "SIM", "PD", "PLE", "RUF"]
