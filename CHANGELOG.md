@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 4.0.1: Jul 6, 2023
+
+- **Info**: Updated README
+
 ## Version 4.0.0: Jul 6, 2023
 
 - **Info**: Updated some versions
