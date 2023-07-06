@@ -3,10 +3,10 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import {
-  mkdirRecursive,
-  pathExists,
-  readJsonFile,
-  writeJsonFile,
+	mkdirRecursive,
+	pathExists,
+	readJsonFile,
+	writeJsonFile,
 } from './utils/fileUtils';
 import { getGlobalSetting } from './utils/settings';
 import { disposeItem } from './utils/vscodeUtils';
@@ -27,9 +27,15 @@ const ROOT_DIR_FILES = [
   'requirements-dev.txt',
 ];
 
-let LINE_LENGTH: number = 120;
-let IS_AGGRESSIVE: boolean = false;
-let PY_TARGET: string = '3.9';
+const LINE_LENGTH_DEFAULT = 120;
+const IS_AGGRESSIVE_DEFAULT = false;
+const PY_TARGET_DEFAULT = '3.9';
+const FORMATTING_TOOL_DEFAULT = 'black';
+
+let LINE_LENGTH: number = LINE_LENGTH_DEFAULT;
+let IS_AGGRESSIVE: boolean = IS_AGGRESSIVE_DEFAULT;
+let PY_TARGET: string = PY_TARGET_DEFAULT;
+let FORMATTING_TOOL: string = FORMATTING_TOOL_DEFAULT;
 
 export function activate(context: vscode.ExtensionContext) {
   if (
@@ -53,9 +59,26 @@ export function deactivate() {
 }
 
 function getCurrentGlobalSettings() {
-  IS_AGGRESSIVE = getGlobalSetting(EXTENSION_NAME, 'aggressiveSettings', false);
-  LINE_LENGTH = getGlobalSetting(EXTENSION_NAME, 'lineLength', 120);
-  PY_TARGET = getGlobalSetting(EXTENSION_NAME, 'pythonVersion', '3.9');
+  LINE_LENGTH = getGlobalSetting(
+    EXTENSION_NAME,
+    'lineLength',
+    LINE_LENGTH_DEFAULT,
+  );
+  IS_AGGRESSIVE = getGlobalSetting(
+    EXTENSION_NAME,
+    'aggressiveSettings',
+    IS_AGGRESSIVE_DEFAULT,
+  );
+  PY_TARGET = getGlobalSetting(
+    EXTENSION_NAME,
+    'pythonVersion',
+    PY_TARGET_DEFAULT,
+  );
+  FORMATTING_TOOL = getGlobalSetting(
+    EXTENSION_NAME,
+    'formattingTool',
+    FORMATTING_TOOL_DEFAULT,
+  );
 }
 
 function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
