@@ -201,7 +201,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
               } else if (IS_AGGRESSIVE && line.startsWith('unfixable')) {
                 return 'unfixable = []';
               } else if (IS_AGGRESSIVE && line.startsWith('ignore = ')) {
-                return 'ignore = ["I001", "ANN401", "SIM300", "PERF203", "ANN101"]';
+                return 'ignore = ["I001", "ANN401", "SIM300", "PERF203", "ANN101", "B905"]';
               } else if (
                 IS_AGGRESSIVE &&
                 line.startsWith('allow-star-arg-any')

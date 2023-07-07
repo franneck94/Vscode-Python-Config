@@ -97,7 +97,7 @@ exclude = ["examples"]
 target-version = "py39"
 select = ["F", "E"]
 extend-select = ["W", "C90", "YTT", "ANN", "ASYNC", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "FLY", "PERF", "RUF"]
-ignore = ["F401", "E402", "B905", "SIM300", "PD901", "PERF203", "ANN101"]
+ignore = ["F401", "E402", "B905", "SIM300", "PD901", "PERF203", "ANN101", "PLR5501"]
 fixable = ["W", "C90", "YTT", "ANN", "ASYNC", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "FLY", "PERF", "RUF"]
 unfixable = ["SIM"]
 line-length = 120
@@ -108,7 +108,7 @@ force-single-line = true
 force-sort-within-sections = false
 lines-after-imports = 2
 [tool.ruff.mccabe]
-max-complexity = 10
+max-complexity = 24
 [tool.ruff.pycodestyle]
 ignore-overlong-task-comments = true
 [tool.ruff.pydocstyle]
