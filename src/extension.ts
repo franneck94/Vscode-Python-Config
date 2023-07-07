@@ -3,10 +3,10 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import {
-	mkdirRecursive,
-	pathExists,
-	readJsonFile,
-	writeJsonFile,
+  mkdirRecursive,
+  pathExists,
+  readJsonFile,
+  writeJsonFile,
 } from './utils/fileUtils';
 import { getGlobalSetting } from './utils/settings';
 import { disposeItem } from './utils/vscodeUtils';
@@ -193,13 +193,15 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
                 line.startsWith('no_implicit_optional')
               ) {
                 return `no_implicit_optional = true`;
-              } else if (IS_AGGRESSIVE && line.startsWith('fixable')) {
+              } else if (IS_AGGRESSIVE && line.startsWith('extend-select')) {
                 // START: RUFF
-                return 'fixable = ["F", "E", "W", "UP", "B", "A", "C4"]';
+                return 'extend-select = ["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "B", "A", "C4", "DTZ", "FA", "ISC", "ICN", "PIE", "PYI", "PT", "RET", "SLOT", "SIM", "ARG", "PTH", "PD", "PLC", "PLE", "PLR", "PLW", "FLY", "NPY", "PERF", "RUF"]';
+              } else if (IS_AGGRESSIVE && line.startsWith('fixable')) {
+                return 'fixable = ["F", "E", "W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "B", "A", "C4", "DTZ", "FA", "ISC", "ICN", "PIE", "PYI", "PT", "RET", "SLOT", "SIM", "ARG", "PTH", "PD", "PLC", "PLE", "PLR", "PLW", "FLY", "NPY", "PERF", "RUF"]';
               } else if (IS_AGGRESSIVE && line.startsWith('unfixable')) {
                 return 'unfixable = []';
               } else if (IS_AGGRESSIVE && line.startsWith('ignore = ')) {
-                return 'ignore = ["SIM300"]';
+                return 'ignore = ["I001", "ANN401", "SIM300"]';
               } else if (
                 IS_AGGRESSIVE &&
                 line.startsWith('allow-star-arg-any')

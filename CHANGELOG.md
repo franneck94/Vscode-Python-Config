@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 4.1.0: Jul 7, 2023
+
+- **Info**: Added more ruff checks in aggressive and non-aggressive mode
+
 ## Version 4.0.1: Jul 6, 2023
 
 - **Info**: Updated README
