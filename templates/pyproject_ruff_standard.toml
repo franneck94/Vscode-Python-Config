@@ -1,6 +1,0 @@
-[tool.ruff]
-select = ["F", "E"]
-extend-select = ["W", "C90", "YTT", "ANN", "ASYNC", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "FLY", "PERF", "RUF"]
-ignore = ["F401", "E402", "B905", "SIM300", "PD901"]
-fixable = ["W", "C90", "YTT", "ANN", "ASYNC", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "FLY", "PERF", "RUF"]
-unfixable = ["SIM"]

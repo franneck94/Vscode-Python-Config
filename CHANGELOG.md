@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 4.2.0: Jul 7, 2023
+
+- **Info**: Added ruff-pylint settings
+
 ## Version 4.1.0: Jul 7, 2023
 
 - **Info**: Added more ruff checks in aggressive and non-aggressive mode
