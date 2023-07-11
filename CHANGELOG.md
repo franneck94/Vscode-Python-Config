@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 4.2.2: Jul 11, 2023
+
+- **Info**: Added donation link
+- **Info**: Bumped black
+
 ## Version 4.2.1: Jul 7, 2023
 
 - **Info**: Updated ruff settings
