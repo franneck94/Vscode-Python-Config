@@ -1,23 +1,21 @@
 {
-    // Editor settings
     "editor.tabSize": 4,
     "editor.rulers": [80, 120],
     "editor.renderWhitespace": "trailing",
     "editor.suggestSelection": "first",
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.stickyScroll.enabled": false,
     "editor.bracketPairColorization.enabled": false,
-    // terminal
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.suggest.preview": true,
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "terminal.integrated.enableMultiLinePasteWarning": false,
-    // Debug
     "debug.onTaskErrors": "debugAnyway",
-    // Explorer settings
     "explorer.compactFolders": false,
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
     "explorer.copyRelativePathSeparator": "/",
-    // Files settings
     "files.autoSave": "onFocusChange",
     "files.exclude": {
         "node_modules/**/*": true,
@@ -27,16 +25,12 @@
         "**/.factorypath": true
     },
     "files.associations": {
-        "*.pyd": "cython",
         "*.pyx": "cython",
-        ".clang*": "yaml",
-        "*.gpj": "jsonc",
-        "*.gvw": "jsonc"
+        "*.pyd": "cython"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    // workbench
     "workbench.startupEditor": "none",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook",
@@ -44,51 +38,33 @@
         "*.svg": "svgPreviewer.customEditor"
     },
     "workbench.editor.untitled.hint": "hidden",
-    // Git settings
+    "workbench.colorTheme": "Default Dark+",
     "git.enableSmartCommit": true,
     "git.autofetch": true,
     "git.confirmSync": false,
-    // Python settings
-    "python.linting.enabled": true,
-    "python.linting.lintOnSave": true,
-    "python.linting.flake8Enabled": false,
-    "python.linting.mypyEnabled": true,
-    "python.formatting.provider": "black",
-    "python.languageServer": "Pylance",
-    "python.analysis.autoFormatStrings": true,
-    "autoDocstring.generateDocstringOnEnter": true,
-    "autoDocstring.quoteStyle": "\"\"\"",
-    "autoDocstring.docstringFormat": "numpy",
-    "[python]": {
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "ms-python.python"
-    },
-    "black-formatter.importStrategy": "fromEnvironment",
-    "isort.importStrategy": "fromEnvironment",
-    "isort.check": true,
-    "ruff.fixAll": false,
-    "ruff.organizeImports": false,
-    // Jupyter Notebook
-    "jupyter.askForKernelRestart": false,
-    "jupyter.useDefaultConfigForJupyter": true,
-    "jupyter.themeMatplotlibPlots": true,
-    "notebook.compactView": false,
-    "notebook.diff.ignoreMetadata": true,
-    "notebook.diff.ignoreOutputs": true,
-    "notebook.formatOnSave.enabled": true,
-    "notebook.output.textLineLimit": 20,
-    // markdown
+    "git.openRepositoryInParentFolders": "always",
+    "security.workspace.trust.untrustedFiles": "open",
+    "security.workspace.trust.enabled": false,
+    "prettier.tabWidth": 4,
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.trailingComma": "all",
+    "prettier.useEditorConfig": true,
+    "prettier.bracketSpacing": false,
     "markdown.validate.enabled": true,
+    "markdown.preview.fontSize": 21,
     "[markdown]": {
         "files.trimTrailingWhitespace": false,
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
-        "editor.wordWrap": "wordWrapColumn"
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 120
     },
-    // Different languages
     "[yaml]": {
         "editor.formatOnSave": false,
-        "editor.defaultFormatter": "redhat.vscode-yaml"
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 120
     },
     "[json]": {
         "editor.formatOnSave": false,
@@ -101,7 +77,10 @@
         "editor.wordWrap": "wordWrapColumn",
         "editor.wordWrapColumn": 120
     },
-    // BetterComments
+    "[toml]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 120
+    },
     "better-comments.tags": [
         {
             "tag": "XXX",
@@ -120,14 +99,53 @@
             "color": "#77C3EC"
         }
     ],
-    // other extensions
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "codesnap.showWindowControls": false,
     "codesnap.shutterAction": "copy",
     "Workspace_Formatter.includePattern": ["*.py"],
-    "Workspace_Formatter.excludePattern": ["**/build", "**/.*", "**/.vscode"],
+    "Workspace_Formatter.excludePattern": [
+        "**/build",
+        "**/.*",
+        "**/.vscode",
+        "**/html"
+    ],
     "svg.preview.autoOpen": true,
+    "remote.WSL.fileWatcher.polling": true,
     "errorLens.delay": 1000,
     "errorLens.enabledDiagnosticLevels": ["error", "warning"],
-    "errorLens.enabled": false
+    "errorLens.enabled": false,
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.flake8Enabled": false,
+    "python.linting.mypyEnabled": true,
+    "python.formatting.provider": "black",
+    "python.languageServer": "Pylance",
+    "python.analysis.addImport.exactMatchOnly": false,
+    "python.analysis.autoImportCompletions": false,
+    "python.analysis.completeFunctionParens": false,
+    "python.analysis.autoFormatStrings": true,
+    "[python]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
+    },
+    "mypy-type-checker.showNotifications": "always",
+    "black-formatter.importStrategy": "useBundled",
+    "isort.check": true,
+    "isort.importStrategy": "useBundled",
+    "ruff.fixAll": false,
+    "ruff.organizeImports": false,
+    "Python_Config.lineLength": 80,
+    "Python_Config.aggressiveSettings": true,
+    "Python_Config.pythonVersion": "3.10",
+    "autoDocstring.generateDocstringOnEnter": true,
+    "autoDocstring.quoteStyle": "'''",
+    "notebook.formatOnSave.enabled": true,
+    "notebook.output.textLineLimit": 20,
+    "notebook.compactView": false,
+    "notebook.diff.ignoreMetadata": true,
+    "notebook.diff.ignoreOutputs": true,
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "jupyter.askForKernelRestart": false,
+    "jupyter.themeMatplotlibPlots": true
 }
