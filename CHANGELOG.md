@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 4.3.0: Aug 08, 2023
+
+- **Info**: Bumped ruff, pylance, mkdocs
+- **Info**: Added settings for new MS python extensions
+
 ## Version 4.2.3: Jul 25, 2023
 
 - **Info**: Bumped black
