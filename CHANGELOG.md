@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 4.4.0: Sep 05, 2023
+
+- **Info**: Updated docs
+- **Info**: Updated versions
+
 ## Version 4.3.0: Aug 08, 2023
 
 - **Info**: Bumped ruff, pylance, mkdocs
