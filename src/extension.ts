@@ -119,7 +119,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
             } else if (LINE_LENGTH > 0) {
               templateData['editor.rulers'] = [80];
             } else {
-              templateData['editor.rulers'] = [80, 120];
+              templateData['editor.rulers'] = [120];
             }
 
             if (FORMATTING_TOOL.toLowerCase() === 'autopep8') {

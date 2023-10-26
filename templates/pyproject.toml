@@ -116,12 +116,6 @@ convention = "numpy"
 [tool.ruff.flake8-annotations]
 allow-star-arg-any = true
 ignore-fully-untyped = true
-[tool.ruff.pylint]
-max-branches = 24
-max-returns = 12
-max-statements = 100
-max-args = 15
-allow-magic-value-types = ["str", "bytes", "complex", "float", "int", "tuple"]
 
 [tool.pyright]
 pythonVersion = "3.9"

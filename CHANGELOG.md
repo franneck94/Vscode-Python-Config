@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 4.5.0: Oct 26, 2023
+
+- **Info**: Updated versions
+
 ## Version 4.4.0: Sep 05, 2023
 
 - **Info**: Updated docs
