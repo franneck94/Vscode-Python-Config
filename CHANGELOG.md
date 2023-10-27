@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 4.6.0: Oct 27, 2023
+
+- **Info**: Added 3rd party libs for isort
+
 ## Version 4.5.0: Oct 26, 2023
 
 - **Info**: Updated versions
