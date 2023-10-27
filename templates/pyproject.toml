@@ -102,7 +102,7 @@ exclude = ["examples"]
 target-version = "py39"
 select = ["F", "E"]
 extend-select = ["W", "C90", "YTT", "ANN", "ASYNC", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "FLY", "PERF", "RUF"]
-ignore = ["F401", "E402", "B905", "SIM300", "PD901", "PERF203", "ANN101", "PLR5501"]
+ignore = ["F401", "E402", "B905", "SIM300", "PD901", "PERF203", "ANN101", "PLR5501", "ISC001"]
 fixable = ["W", "C90", "YTT", "ANN", "ASYNC", "A", "C4", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "FLY", "PERF", "RUF"]
 unfixable = ["SIM"]
 line-length = 120
@@ -121,6 +121,11 @@ convention = "numpy"
 [tool.ruff.flake8-annotations]
 allow-star-arg-any = true
 ignore-fully-untyped = true
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = true
+line-ending = "auto"
 
 [tool.pyright]
 pythonVersion = "3.9"
