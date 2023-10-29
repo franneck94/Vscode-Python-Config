@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 4.8.0: Oct 29, 2023
+
+- **Info**: Updated isort config
+
 ## Version 4.7.0: Oct 27, 2023
 
 - **Info**: Added frist draft for ruff format
