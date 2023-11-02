@@ -1,6 +1,6 @@
 # VSCode Python Config
 
-Creates config files with pre-defined settings for modern Python projects.  
+Creates config files with pre-defined settings for modern Python projects in your *workspace*.  
 
 The following files will be created in the local .vscode folder:
 
@@ -19,7 +19,9 @@ The following files will be created in the root directory:
   - requirements-dev.txt: List of python packages to install
   - pyproject.toml: General settings for: black, isort, mypy and ruff
 
-**Note**: If one of these files already exists, they are overridden.
+**Note**: If one of these files already exists, they are overridden.  
+
+**Hint**: You can also copy the content of the locally generated settings.json file to your global vscode settings.
 
 ## How to use
 
@@ -38,7 +40,7 @@ Refer to the [CHANGELOG](CHANGELOG.md).
 
 ## License
 
-Copyright (C) 2022-2023 Jan Schaffranek.  
+Copyright (C) 2021-2023 Jan Schaffranek.  
 Licensed under the [MIT License](LICENSE).
 
 ## Supporting the Work
