@@ -40,8 +40,7 @@ known_third_party = [
     "cv2",
     "skimage",
     "tensorcross",
-    "tensorflow_datasets",
-    "scikeras"
+    "tensorflow_datasets"
 ]
 known_first_party = []
 known_local_folder = []

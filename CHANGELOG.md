@@ -1,5 +1,13 @@
 # Python Config Change Log
 
+## Version 4.9.0: Nov 02, 2023
+
+- **Info**: Added Python 3.12 as a Version
+- **Info**: Python 3.10 is now the default Version
+- **Info**: Updated pre-commit file
+- **Info**: Updated settings.json file
+- **Info**: Bumped versions in requirements file
+
 ## Version 4.8.0: Oct 29, 2023
 
 - **Info**: Updated isort config

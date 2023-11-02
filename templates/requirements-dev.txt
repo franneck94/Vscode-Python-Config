@@ -20,5 +20,5 @@ pytest-benchmark>=4.0.0
 mkdocs>=1.5.3
 mkdocstrings>=0.23.0
 mkdocstrings-python>=1.7.3
-mkdocs-material>=9.4.6
+mkdocs-material>=9.4.7
 Pygments>=2.16.1

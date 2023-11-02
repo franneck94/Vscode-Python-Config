@@ -69,9 +69,10 @@
                         "3.8",
                         "3.9",
                         "3.10",
-                        "3.11"
+                        "3.11",
+                        "3.12"
                     ],
-                    "default": "3.9",
+                    "default": "3.10",
                     "description": "The python target version for the tools.",
                     "scope": "machine"
                 },

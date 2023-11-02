@@ -1,4 +1,5 @@
 {
+    // Editor
     "editor.tabSize": 4,
     "editor.rulers": [120],
     "editor.renderWhitespace": "trailing",
@@ -9,13 +10,17 @@
     "editor.bracketPairColorization.enabled": false,
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.suggest.preview": true,
+    // Terminal
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "terminal.integrated.enableMultiLinePasteWarning": false,
+    // Debug
     "debug.onTaskErrors": "debugAnyway",
+    // Explorer
     "explorer.compactFolders": false,
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
     "explorer.copyRelativePathSeparator": "/",
+    // Files
     "files.autoSave": "onFocusChange",
     "files.exclude": {
         "node_modules/**/*": true,
@@ -26,11 +31,15 @@
     },
     "files.associations": {
         "*.pyx": "cython",
-        "*.pyd": "cython"
+        ".clang*": "yaml",
+        "*.gpj": "jsonc",
+        "*.gvw": "jsonc",
+        "*.hpp.in": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    // workbench
     "workbench.startupEditor": "none",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook",
@@ -38,18 +47,23 @@
         "*.svg": "svgPreviewer.customEditor"
     },
     "workbench.colorTheme": "Default Dark+",
+    // Git
     "git.enableSmartCommit": true,
     "git.autofetch": true,
     "git.confirmSync": false,
     "git.openRepositoryInParentFolders": "always",
+    // Telemetry and Security
     "security.workspace.trust.untrustedFiles": "open",
     "security.workspace.trust.enabled": false,
+    "partialDiff.enableTelemetry": false,
+    // Prettier
     "prettier.tabWidth": 4,
     "prettier.singleQuote": true,
     "prettier.jsxSingleQuote": true,
     "prettier.trailingComma": "all",
     "prettier.useEditorConfig": true,
     "prettier.bracketSpacing": false,
+    // Markdown
     "markdown.validate.enabled": true,
     "markdown.preview.fontSize": 21,
     "[markdown]": {
@@ -57,13 +71,14 @@
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
         "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 120
+        "editor.wordWrapColumn": 80
     },
+    // Different languages
     "[yaml]": {
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "redhat.vscode-yaml",
         "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 120
+        "editor.wordWrapColumn": 80
     },
     "[json]": {
         "editor.formatOnSave": false,
@@ -78,8 +93,9 @@
     },
     "[toml]": {
         "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 120
+        "editor.wordWrapColumn": 80
     },
+    // BetterComments
     "better-comments.tags": [
         {
             "tag": "XXX",
@@ -98,10 +114,10 @@
             "color": "#77C3EC"
         }
     ],
+    // other extensions
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "codesnap.showWindowControls": false,
     "codesnap.shutterAction": "copy",
-    "Workspace_Formatter.includePattern": ["*.py"],
     "Workspace_Formatter.excludePattern": [
         "**/build",
         "**/.*",
@@ -113,38 +129,50 @@
     "errorLens.delay": 1000,
     "errorLens.enabledDiagnosticLevels": ["error", "warning"],
     "errorLens.enabled": false,
-    "python.linting.enabled": true,
-    "python.linting.lintOnSave": true,
-    "python.linting.flake8Enabled": false,
-    "python.linting.mypyEnabled": true,
-    "python.formatting.provider": "black",
-    "python.languageServer": "Pylance",
-    "python.analysis.addImport.exactMatchOnly": false,
-    "python.analysis.autoImportCompletions": false,
-    "python.analysis.completeFunctionParens": false,
-    "python.analysis.autoFormatStrings": true,
+    // Python
     "[python]": {
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnType": true
     },
-    "mypy-type-checker.showNotifications": "always",
-    "black-formatter.importStrategy": "useBundled",
-    "isort.check": true,
-    "isort.importStrategy": "useBundled",
-    "ruff.fixAll": false,
-    "ruff.organizeImports": false,
+    "python.languageServer": "Pylance",
+    "python.analysis.addImport.exactMatchOnly": true,
+    "python.analysis.autoImportCompletions": false,
+    "python.analysis.completeFunctionParens": false,
+    "python.analysis.autoFormatStrings": true,
+    "python.analysis.logLevel": "Error",
+    "python.createEnvironment.contentButton": "show",
+    "python.missingPackage.severity": "Error",
+    // Python Config
     "Python_Config.lineLength": 80,
     "Python_Config.aggressiveSettings": true,
     "Python_Config.pythonVersion": "3.10",
+    // Mypy
+    "mypy-type-checker.showNotifications": "onError",
+    "mypy-type-checker.importStrategy": "fromEnvironment",
+    // Black
+    "black-formatter.importStrategy": "fromEnvironment",
+    "black-formatter.showNotifications": "onError",
+    // Isort
+    "isort.check": true,
+    "isort.importStrategy": "fromEnvironment",
+    "isort.serverEnabled": false,
+    "isort.showNotifications": "onError",
+    // Ruff
+    "ruff.organizeImports": false,
+    "ruff.showNotifications": "onError",
+    // Auto Docstring
     "autoDocstring.generateDocstringOnEnter": true,
     "autoDocstring.quoteStyle": "'''",
+    // Jupyter Notebook
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "jupyter.askForKernelRestart": false,
+    "jupyter.themeMatplotlibPlots": true,
+    "jupyter.executionAnalysis.enabled": true,
+    "jupyter.logging.level": "error",
     "notebook.formatOnSave.enabled": true,
     "notebook.output.textLineLimit": 20,
     "notebook.compactView": false,
     "notebook.diff.ignoreMetadata": true,
-    "notebook.diff.ignoreOutputs": true,
-    "jupyter.interactiveWindow.creationMode": "perFile",
-    "jupyter.askForKernelRestart": false,
-    "jupyter.themeMatplotlibPlots": true
+    "notebook.diff.ignoreOutputs": true
 }
