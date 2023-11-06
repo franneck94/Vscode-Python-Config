@@ -2,7 +2,7 @@
     "name": "vscode-python-config",
     "displayName": "Python Config",
     "description": "Creates config files for modern Python projects",
-    "version": "4.9.0",
+    "version": "5.0.0",
     "publisher": "franneck94",
     "license": "MIT",
     "icon": "icon.png",
@@ -65,7 +65,6 @@
                 "Python_Config.pythonVersion": {
                     "type": "string",
                     "enum": [
-                        "3.7",
                         "3.8",
                         "3.9",
                         "3.10",

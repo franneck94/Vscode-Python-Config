@@ -132,7 +132,7 @@
     "[python]": {
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnType": true
+        "editor.formatOnType": false
     },
     "python.languageServer": "Pylance",
     "python.analysis.addImport.exactMatchOnly": true,

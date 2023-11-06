@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 5.0.0: Nov 06, 2023
+
+- **Info**: Bumped versions
+- **Info**: Dropped Python 3.7 support, support ist 3.8-3.12
+
 ## Version 4.9.0: Nov 02, 2023
 
 - **Info**: Added Python 3.12 as a Version

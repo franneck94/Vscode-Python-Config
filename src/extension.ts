@@ -32,7 +32,15 @@ const IS_AGGRESSIVE_DEFAULT = false;
 const PY_TARGET_DEFAULT = '3.9';
 const FORMATTING_TOOL_DEFAULT = 'black';
 
-const CURR_AUTOPEP8_VERSIONS = '2.0.2';
+const CURR_AUTOPEP8_VERSIONS = '2.0.4';
+
+const AGGRESSIVE_FIXABLES =
+  '["F", "E", "W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "B", "A", "C4", "DTZ", "FA", "ISC", "ICN", "PIE", "PYI", "PT", "RET", "SLOT", "SIM", "ARG", "PTH", "PD", "PLC", "PLE", "PLR", "PLW", "FLY", "NPY", "PERF", "RUF"]';
+const AGGRESSIVE_UNFIXABLES = '[]';
+const AGGRESSIVE_SELECTS =
+  '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "B", "A", "C4", "DTZ", "FA", "ISC", "ICN", "PIE", "PYI", "PT", "RET", "SLOT", "SIM", "ARG", "PTH", "PD", "PLC", "PLE", "PLR", "PLW", "FLY", "NPY", "PERF", "RUF"]';
+const AGGRESSIVE_EXCLUDES =
+  '["I001", "ANN401", "SIM300", "PERF203", "ANN101", "B905"]';
 
 let LINE_LENGTH: number = LINE_LENGTH_DEFAULT;
 let IS_AGGRESSIVE: boolean = IS_AGGRESSIVE_DEFAULT;
@@ -104,6 +112,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
         mkdirRecursive(vscodePath);
       }
 
+      // SETTINGS.JSON
       VSCODE_DIR_FILES.forEach((filename: string) => {
         const targetFilename = path.join(vscodePath, filename);
         const templateFilename = path.join(templatePath, filename);
@@ -195,13 +204,13 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
                 return `no_implicit_optional = true`;
               } else if (IS_AGGRESSIVE && line.startsWith('extend-select')) {
                 // START: RUFF
-                return 'extend-select = ["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "B", "A", "C4", "DTZ", "FA", "ISC", "ICN", "PIE", "PYI", "PT", "RET", "SLOT", "SIM", "ARG", "PTH", "PD", "PLC", "PLE", "PLR", "PLW", "FLY", "NPY", "PERF", "RUF"]';
+                return `extend-select = ${AGGRESSIVE_SELECTS}`;
               } else if (IS_AGGRESSIVE && line.startsWith('fixable')) {
-                return 'fixable = ["F", "E", "W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "B", "A", "C4", "DTZ", "FA", "ISC", "ICN", "PIE", "PYI", "PT", "RET", "SLOT", "SIM", "ARG", "PTH", "PD", "PLC", "PLE", "PLR", "PLW", "FLY", "NPY", "PERF", "RUF"]';
+                return `fixable = ${AGGRESSIVE_FIXABLES}`;
               } else if (IS_AGGRESSIVE && line.startsWith('unfixable')) {
-                return 'unfixable = []';
+                return `unfixable = ${AGGRESSIVE_UNFIXABLES}`;
               } else if (IS_AGGRESSIVE && line.startsWith('ignore = ')) {
-                return 'ignore = ["I001", "ANN401", "SIM300", "PERF203", "ANN101", "B905"]';
+                return `ignore = ${AGGRESSIVE_EXCLUDES}`;
               } else if (
                 IS_AGGRESSIVE &&
                 line.startsWith('allow-star-arg-any')
@@ -223,31 +232,15 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
                 line.includes('skip-magic-trailing-comma')
               ) {
                 return 'skip-magic-trailing-comma = false';
-              } else if (
-                PY_TARGET !== '3.9' &&
-                line.startsWith("target-version = ['py39']")
-              ) {
+              } else if (line.startsWith("target-version = ['py39']")) {
                 return `target-version = ['py${PY_TARGET.replace('.', '')}']`;
-              } else if (
-                // START: VERSIONS
-                PY_TARGET !== '3.9' &&
-                line.startsWith('py_version = 39')
-              ) {
+              } else if (line.startsWith('py_version = 39')) {
                 return `py_version = ${PY_TARGET.replace('.', '')}`;
-              } else if (
-                PY_TARGET !== '3.9' &&
-                line.startsWith('python_version = "3.9"')
-              ) {
+              } else if (line.startsWith('python_version = "3.9"')) {
                 return `python_version = "${PY_TARGET}"`;
-              } else if (
-                PY_TARGET !== '3.9' &&
-                line.startsWith('target-version = "py39"')
-              ) {
+              } else if (line.startsWith('target-version = "py39"')) {
                 return `target-version = "py${PY_TARGET.replace('.', '')}"`;
-              } else if (
-                PY_TARGET !== '3.9' &&
-                line.startsWith('pythonVersion = "3.9"')
-              ) {
+              } else if (line.startsWith('pythonVersion = "3.9"')) {
                 return `pythonVersion = "${PY_TARGET}"`;
               } else {
                 return line;
