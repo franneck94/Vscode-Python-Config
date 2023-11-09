@@ -3,12 +3,12 @@ build>=1.0.3
 twine>=4.0.2
 
 # Linting/Tooling
-black>=23.10.1
+black>=23.11.0
 isort>=5.12.0
 mypy>=1.6.1
 pre-commit>=3.5.0
-ruff>=0.1.4
-pyright>=1.1.334
+ruff>=0.1.5
+pyright>=1.1.335
 
 # Testing
 pytest>=7.4.3

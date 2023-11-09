@@ -1,5 +1,18 @@
 # Python Config Change Log
 
+## TODO
+
+- Add "TRIO" for ruff
+- Set ruff.fixAll to true with aggressive settings
+- Set reportUnboundVariable to true with aggressive settings
+
+## Version 6.0.0: Nov 09, 2023
+
+- **Info**: Bumped versions
+- **Info**: Added more checks for aggressive ruff
+- **Info**: Dropped autopep8 formatter
+- **Info**: Added ruff formatter as an option
+
 ## Version 5.0.0: Nov 06, 2023
 
 - **Info**: Bumped versions

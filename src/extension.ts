@@ -29,18 +29,16 @@ const ROOT_DIR_FILES = [
 
 const LINE_LENGTH_DEFAULT = 120;
 const IS_AGGRESSIVE_DEFAULT = false;
-const PY_TARGET_DEFAULT = '3.9';
+const PY_TARGET_DEFAULT = '3.10';
 const FORMATTING_TOOL_DEFAULT = 'black';
 
-const CURR_AUTOPEP8_VERSIONS = '2.0.4';
-
-const AGGRESSIVE_FIXABLES =
-  '["F", "E", "W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "B", "A", "C4", "DTZ", "FA", "ISC", "ICN", "PIE", "PYI", "PT", "RET", "SLOT", "SIM", "ARG", "PTH", "PD", "PLC", "PLE", "PLR", "PLW", "FLY", "NPY", "PERF", "RUF"]';
-const AGGRESSIVE_UNFIXABLES = '[]';
 const AGGRESSIVE_SELECTS =
-  '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "B", "A", "C4", "DTZ", "FA", "ISC", "ICN", "PIE", "PYI", "PT", "RET", "SLOT", "SIM", "ARG", "PTH", "PD", "PLC", "PLE", "PLR", "PLW", "FLY", "NPY", "PERF", "RUF"]';
+  '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "BLE", "B", "A", "COM", "C4", "EXE", "FA", "ISC", "ICN", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "TD", "FIX", "PD", "PL", "TRY", "FLY", "NPY", "PERF", "FURB", "RUF"]';
 const AGGRESSIVE_EXCLUDES =
-  '["I001", "ANN401", "SIM300", "PERF203", "ANN101", "B905"]';
+  '["I001", "ANN401", "SIM300", "PERF203", "ANN101", "B905", "NPY002", "COM812", "N999", "PTH", "INP001", "TRY003", "PLW1641"]';
+const AGGRESSIVE_FIXABLES =
+  '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "BLE", "B", "A", "COM", "C4", "EXE", "FA", "ISC", "ICN", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "TD", "FIX", "PD", "PL", "TRY", "FLY", "NPY", "PERF", "FURB", "RUF"]';
+const AGGRESSIVE_UNFIXABLES = '[]';
 
 let LINE_LENGTH: number = LINE_LENGTH_DEFAULT;
 let IS_AGGRESSIVE: boolean = IS_AGGRESSIVE_DEFAULT;
@@ -131,10 +129,12 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
               templateData['editor.rulers'] = [120];
             }
 
-            if (FORMATTING_TOOL.toLowerCase() === 'autopep8') {
-              templateData['python.formatting.provider'] = 'autopep8';
+            if (FORMATTING_TOOL.toLowerCase() === 'ruff') {
+              templateData['[python]']['editor.defaultFormatter'] =
+                'charliermarsh.ruff';
             } else {
-              templateData['python.formatting.provider'] = 'black';
+              templateData['[python]']['editor.defaultFormatter'] =
+                'ms-python.black-formatter';
             }
 
             if (IS_AGGRESSIVE) {
@@ -232,15 +232,15 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
                 line.includes('skip-magic-trailing-comma')
               ) {
                 return 'skip-magic-trailing-comma = false';
-              } else if (line.startsWith("target-version = ['py39']")) {
+              } else if (line.startsWith("target-version = ['py310']")) {
                 return `target-version = ['py${PY_TARGET.replace('.', '')}']`;
-              } else if (line.startsWith('py_version = 39')) {
+              } else if (line.startsWith('py_version = 310')) {
                 return `py_version = ${PY_TARGET.replace('.', '')}`;
-              } else if (line.startsWith('python_version = "3.9"')) {
+              } else if (line.startsWith('python_version = "3.10"')) {
                 return `python_version = "${PY_TARGET}"`;
-              } else if (line.startsWith('target-version = "py39"')) {
+              } else if (line.startsWith('target-version = "py310"')) {
                 return `target-version = "py${PY_TARGET.replace('.', '')}"`;
-              } else if (line.startsWith('pythonVersion = "3.9"')) {
+              } else if (line.startsWith('pythonVersion = "3.10"')) {
                 return `pythonVersion = "${PY_TARGET}"`;
               } else {
                 return line;
@@ -251,30 +251,9 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
           } else if (filename === '.pre-commit-config.yaml') {
             const data = templateData.toString().split('\n');
 
-            let was_formatter = false;
-
             const modifiedData = data.map((line: string) => {
               if (IS_AGGRESSIVE && line.includes('# args:')) {
                 return `        args: [ --fix, --exit-non-zero-on-fix ]`;
-              } else if (
-                FORMATTING_TOOL.toLowerCase() === 'autopep8' &&
-                line.includes('https://github.com/psf/black')
-              ) {
-                was_formatter = true;
-                return `-   repo: https://github.com/pre-commit/mirrors-autopep8`;
-              } else if (was_formatter) {
-                was_formatter = false;
-                return `    rev: 'v${CURR_AUTOPEP8_VERSIONS}'`;
-              } else if (
-                FORMATTING_TOOL.toLowerCase() === 'autopep8' &&
-                line.includes('id: black')
-              ) {
-                return '    -   id: autopep8';
-              } else if (
-                FORMATTING_TOOL.toLowerCase() === 'autopep8' &&
-                line.includes('id: nbqa-black')
-              ) {
-                return '    -   id: autopep8';
               } else {
                 return line;
               }
@@ -284,18 +263,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
           } else if (filename === 'requirements-dev.txt') {
             const data = templateData.toString().split('\n');
 
-            const modifiedData = data.map((line: string) => {
-              if (
-                FORMATTING_TOOL.toLowerCase() === 'autopep8' &&
-                line.includes('black')
-              ) {
-                return `autopep8>=${CURR_AUTOPEP8_VERSIONS}`;
-              } else {
-                return line;
-              }
-            });
-
-            templateData = Buffer.from(modifiedData.join('\r\n'), 'utf8');
+            templateData = Buffer.from(data.join('\r\n'), 'utf8');
           }
 
           fs.writeFileSync(targetFilename, templateData);

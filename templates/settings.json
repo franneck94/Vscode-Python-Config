@@ -53,8 +53,6 @@
     "git.confirmSync": false,
     "git.openRepositoryInParentFolders": "always",
     // Telemetry and Security
-    "security.workspace.trust.untrustedFiles": "open",
-    "security.workspace.trust.enabled": false,
     "partialDiff.enableTelemetry": false,
     // Prettier
     "prettier.tabWidth": 4,
@@ -142,24 +140,16 @@
     "python.analysis.logLevel": "Error",
     "python.createEnvironment.contentButton": "show",
     "python.missingPackage.severity": "Error",
-    // Python Config
-    "Python_Config.lineLength": 120,
-    "Python_Config.aggressiveSettings": true,
-    "Python_Config.pythonVersion": "3.10",
     // Mypy
-    "mypy-type-checker.showNotifications": "onError",
     "mypy-type-checker.importStrategy": "fromEnvironment",
     // Black
     "black-formatter.importStrategy": "fromEnvironment",
-    "black-formatter.showNotifications": "onError",
     // Isort
     "isort.check": true,
     "isort.importStrategy": "fromEnvironment",
-    "isort.serverEnabled": false,
-    "isort.showNotifications": "onError",
     // Ruff
     "ruff.organizeImports": false,
-    "ruff.showNotifications": "onError",
+    "ruff.fixAll": false,
     // Auto Docstring
     "autoDocstring.generateDocstringOnEnter": true,
     "autoDocstring.quoteStyle": "'''",
@@ -167,7 +157,6 @@
     "jupyter.interactiveWindow.creationMode": "perFile",
     "jupyter.askForKernelRestart": false,
     "jupyter.themeMatplotlibPlots": true,
-    "jupyter.executionAnalysis.enabled": true,
     "jupyter.logging.level": "error",
     "notebook.formatOnSave.enabled": true,
     "notebook.output.textLineLimit": 20,
