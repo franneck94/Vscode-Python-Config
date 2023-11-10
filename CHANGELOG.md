@@ -2,9 +2,13 @@
 
 ## TODO
 
-- Add "TRIO" for ruff
-- Set ruff.fixAll to true with aggressive settings
-- Set reportUnboundVariable to true with aggressive settings
+- Add "TRIO" for ruff in aggressive mode
+
+## Version 6.1.0: Nov 10, 2023
+
+- **Info**: Removed excludes from pre-commit file, the tools should use the exclude from the pyproject.toml
+- **Info**: Activated some checks in aggressive mode
+- **Info**: Removed some checks in non-aggressive mode
 
 ## Version 6.0.0: Nov 09, 2023
 

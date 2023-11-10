@@ -34,7 +34,7 @@ const FORMATTING_TOOL_DEFAULT = 'black';
 
 const AGGRESSIVE_SELECTS =
   '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "BLE", "B", "A", "COM", "C4", "EXE", "FA", "ISC", "ICN", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "TD", "FIX", "PD", "PL", "TRY", "FLY", "NPY", "PERF", "FURB", "RUF"]';
-const AGGRESSIVE_EXCLUDES =
+const AGGRESSIVE_IGNORES =
   '["I001", "ANN401", "SIM300", "PERF203", "ANN101", "B905", "NPY002", "COM812", "N999", "PTH", "INP001", "TRY003", "PLW1641"]';
 const AGGRESSIVE_FIXABLES =
   '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "BLE", "B", "A", "COM", "C4", "EXE", "FA", "ISC", "ICN", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "TD", "FIX", "PD", "PL", "TRY", "FLY", "NPY", "PERF", "FURB", "RUF"]';
@@ -139,6 +139,8 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
 
             if (IS_AGGRESSIVE) {
               templateData['ruff.fixAll'] = true;
+            } else {
+              templateData['ruff.fixAll'] = false;
             }
           }
 
@@ -164,86 +166,94 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
             const data = templateData.toString().split('\n');
 
             const modifiedData = data.map((line: string) => {
-              if (line.includes('line-length')) {
-                // START: GENERAL
-                return `line-length = ${LINE_LENGTH}`;
-              }
-              if (line.includes('line_length')) {
-                return `line_length = ${LINE_LENGTH}`;
-              } else if (line.includes('max-line-length')) {
-                return `max-line-length = ${LINE_LENGTH}`;
-              } else if (IS_AGGRESSIVE && line.includes('ignore=')) {
-                return 'ignore=';
-              } else if (
+              // START: GENERAL
+              if (IS_AGGRESSIVE) {
                 // START: MYPY
-                IS_AGGRESSIVE &&
-                line.startsWith('check_untyped_defs')
-              ) {
-                return `check_untyped_defs = true`;
-              } else if (
-                IS_AGGRESSIVE &&
-                line.startsWith('disallow_incomplete_defs')
-              ) {
-                return `disallow_incomplete_defs = true`;
-              } else if (
-                IS_AGGRESSIVE &&
-                line.startsWith('disallow_untyped_defs')
-              ) {
-                return `disallow_untyped_defs = true`;
-              } else if (
-                IS_AGGRESSIVE &&
-                line.startsWith('disallow_subclassing_any')
-              ) {
-                return `disallow_subclassing_any = true`;
-              } else if (IS_AGGRESSIVE && line.startsWith('strict_optional')) {
-                return `strict_optional = true`;
-              } else if (
-                IS_AGGRESSIVE &&
-                line.startsWith('no_implicit_optional')
-              ) {
-                return `no_implicit_optional = true`;
-              } else if (IS_AGGRESSIVE && line.startsWith('extend-select')) {
-                // START: RUFF
-                return `extend-select = ${AGGRESSIVE_SELECTS}`;
-              } else if (IS_AGGRESSIVE && line.startsWith('fixable')) {
-                return `fixable = ${AGGRESSIVE_FIXABLES}`;
-              } else if (IS_AGGRESSIVE && line.startsWith('unfixable')) {
-                return `unfixable = ${AGGRESSIVE_UNFIXABLES}`;
-              } else if (IS_AGGRESSIVE && line.startsWith('ignore = ')) {
-                return `ignore = ${AGGRESSIVE_EXCLUDES}`;
-              } else if (
-                IS_AGGRESSIVE &&
-                line.startsWith('allow-star-arg-any')
-              ) {
-                return 'allow-star-arg-any = false';
-              } else if (
-                IS_AGGRESSIVE &&
-                line.startsWith('ignore-fully-untyped')
-              ) {
-                return 'ignore-fully-untyped = false';
-              } else if (
-                // START: BLACK
-                IS_AGGRESSIVE &&
-                line.includes('skip-string-normalization')
-              ) {
-                return 'skip-string-normalization = false';
-              } else if (
-                IS_AGGRESSIVE &&
-                line.includes('skip-magic-trailing-comma')
-              ) {
-                return 'skip-magic-trailing-comma = false';
-              } else if (line.startsWith("target-version = ['py310']")) {
-                return `target-version = ['py${PY_TARGET.replace('.', '')}']`;
-              } else if (line.startsWith('py_version = 310')) {
-                return `py_version = ${PY_TARGET.replace('.', '')}`;
-              } else if (line.startsWith('python_version = "3.10"')) {
-                return `python_version = "${PY_TARGET}"`;
-              } else if (line.startsWith('target-version = "py310"')) {
-                return `target-version = "py${PY_TARGET.replace('.', '')}"`;
-              } else if (line.startsWith('pythonVersion = "3.10"')) {
-                return `pythonVersion = "${PY_TARGET}"`;
+                if (line.startsWith('check_untyped_defs')) {
+                  return `check_untyped_defs = true`;
+                } else if (line.startsWith('no_implicit_optional')) {
+                  return `no_implicit_optional = true`;
+                } else if (line.startsWith('strict_optional')) {
+                  return `strict_optional = true`;
+                } else if (line.startsWith('disallow_untyped_defs')) {
+                  return `disallow_untyped_defs = true`;
+                } else if (line.startsWith('disallow_incomplete_defs')) {
+                  return `disallow_incomplete_defs = true`;
+                } else if (line.startsWith('disallow_subclassing_any')) {
+                  return `disallow_subclassing_any = true`;
+                } else if (line.startsWith('allow_untyped_globals')) {
+                  return `allow_untyped_globals = false`;
+                } else if (line.startsWith('allow_redefinition')) {
+                  return `allow_redefinition = false`;
+                } else if (line.startsWith('extend-select')) {
+                  // START: RUFF
+                  return `extend-select = ${AGGRESSIVE_SELECTS}`;
+                } else if (line.startsWith('ignore = ')) {
+                  return `ignore = ${AGGRESSIVE_IGNORES}`;
+                } else if (line.startsWith('fixable')) {
+                  return `fixable = ${AGGRESSIVE_FIXABLES}`;
+                } else if (line.startsWith('unfixable')) {
+                  return `unfixable = ${AGGRESSIVE_UNFIXABLES}`;
+                } else if (line.startsWith('allow-star-arg-any')) {
+                  return 'allow-star-arg-any = false';
+                } else if (line.startsWith('ignore-fully-untyped')) {
+                  return 'ignore-fully-untyped = false';
+                } else if (line.includes('skip-string-normalization')) {
+                  // START: BLACK
+                  return 'skip-string-normalization = false';
+                } else if (line.includes('skip-magic-trailing-comma')) {
+                  return 'skip-magic-trailing-comma = false';
+                } else if (line.includes('ignore=')) {
+                  return 'ignore=';
+                } else if (line.startsWith('reportUntypedClassDecorator')) {
+                  // START PYRIGHT
+                  return 'reportUntypedClassDecorator = true';
+                } else if (line.startsWith('reportUntypedFunctionDecorator')) {
+                  return 'reportUntypedFunctionDecorator = true';
+                } else if (line.startsWith('reportUntypedNamedTuple')) {
+                  return 'reportUntypedNamedTuple = true';
+                } else if (line.startsWith('reportGeneralTypeIssues')) {
+                  return 'reportGeneralTypeIssues = true';
+                } else if (line.startsWith('reportOptionalCall')) {
+                  return 'reportOptionalCall = true';
+                } else if (line.startsWith('reportOptionalIterable')) {
+                  return 'reportOptionalIterable = true';
+                } else if (line.startsWith('reportOptionalMemberAccess')) {
+                  return 'reportOptionalMemberAccess = true';
+                } else if (line.startsWith('reportOptionalMemberAccess')) {
+                  return 'reportOptionalMemberAccess = true';
+                } else if (line.startsWith('reportOptionalOperand')) {
+                  return 'reportOptionalOperand = true';
+                } else if (line.startsWith('reportOptionalSubscript')) {
+                  return 'reportOptionalSubscript = true';
+                } else if (line.startsWith('reportPrivateImportUsage')) {
+                  return 'reportPrivateImportUsage = true';
+                } else if (line.startsWith('reportUnboundVariable')) {
+                  return 'reportUnboundVariable = true';
+                }
               } else {
-                return line;
+                // LINE LENGTH
+                if (line.includes('line-length')) {
+                  return `line-length = ${LINE_LENGTH}`;
+                } else if (line.includes('line_length')) {
+                  return `line_length = ${LINE_LENGTH}`;
+                } else if (line.includes('max-line-length')) {
+                  return `max-line-length = ${LINE_LENGTH}`;
+                  // TARGET VERSION
+                } else if (line.startsWith("target-version = ['py")) {
+                  return `target-version = ['py${PY_TARGET.replace('.', '')}']`;
+                } else if (line.startsWith('py_version = 3')) {
+                  return `py_version = ${PY_TARGET.replace('.', '')}`;
+                } else if (line.startsWith('python_version = "3.')) {
+                  return `python_version = "${PY_TARGET}"`;
+                } else if (line.startsWith('target-version = "py3')) {
+                  return `target-version = "py${PY_TARGET.replace('.', '')}"`;
+                } else if (line.startsWith('pythonVersion = "3.')) {
+                  return `pythonVersion = "${PY_TARGET}"`;
+                } else {
+                  //EVERYTHING ELSE
+                  return line;
+                }
               }
             });
 
@@ -252,7 +262,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
             const data = templateData.toString().split('\n');
 
             const modifiedData = data.map((line: string) => {
-              if (IS_AGGRESSIVE && line.includes('# args:')) {
+              if (line.includes('# args:')) {
                 return `        args: [ --fix, --exit-non-zero-on-fix ]`;
               } else {
                 return line;
