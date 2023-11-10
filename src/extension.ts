@@ -231,29 +231,29 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
                 } else if (line.startsWith('reportUnboundVariable')) {
                   return 'reportUnboundVariable = true';
                 }
+              }
+
+              // LINE LENGTH
+              if (line.includes('line-length')) {
+                return `line-length = ${LINE_LENGTH}`;
+              } else if (line.includes('line_length')) {
+                return `line_length = ${LINE_LENGTH}`;
+              } else if (line.includes('max-line-length')) {
+                return `max-line-length = ${LINE_LENGTH}`;
+                // TARGET VERSION
+              } else if (line.startsWith("target-version = ['py")) {
+                return `target-version = ['py${PY_TARGET.replace('.', '')}']`;
+              } else if (line.startsWith('py_version = 3')) {
+                return `py_version = ${PY_TARGET.replace('.', '')}`;
+              } else if (line.startsWith('python_version = "3.')) {
+                return `python_version = "${PY_TARGET}"`;
+              } else if (line.startsWith('target-version = "py3')) {
+                return `target-version = "py${PY_TARGET.replace('.', '')}"`;
+              } else if (line.startsWith('pythonVersion = "3.')) {
+                return `pythonVersion = "${PY_TARGET}"`;
               } else {
-                // LINE LENGTH
-                if (line.includes('line-length')) {
-                  return `line-length = ${LINE_LENGTH}`;
-                } else if (line.includes('line_length')) {
-                  return `line_length = ${LINE_LENGTH}`;
-                } else if (line.includes('max-line-length')) {
-                  return `max-line-length = ${LINE_LENGTH}`;
-                  // TARGET VERSION
-                } else if (line.startsWith("target-version = ['py")) {
-                  return `target-version = ['py${PY_TARGET.replace('.', '')}']`;
-                } else if (line.startsWith('py_version = 3')) {
-                  return `py_version = ${PY_TARGET.replace('.', '')}`;
-                } else if (line.startsWith('python_version = "3.')) {
-                  return `python_version = "${PY_TARGET}"`;
-                } else if (line.startsWith('target-version = "py3')) {
-                  return `target-version = "py${PY_TARGET.replace('.', '')}"`;
-                } else if (line.startsWith('pythonVersion = "3.')) {
-                  return `pythonVersion = "${PY_TARGET}"`;
-                } else {
-                  //EVERYTHING ELSE
-                  return line;
-                }
+                //EVERYTHING ELSE
+                return line;
               }
             });
 
