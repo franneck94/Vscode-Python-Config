@@ -261,9 +261,36 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
           } else if (filename === '.pre-commit-config.yaml') {
             const data = templateData.toString().split('\n');
 
+            let isFormatter = false;
             const modifiedData = data.map((line: string) => {
-              if (line.includes('# args:')) {
-                return `        args: [ --fix, --exit-non-zero-on-fix ]`;
+              if (
+                line.includes('nbqa-black') &&
+                FORMATTING_TOOL.toLowerCase() === 'ruff'
+              ) {
+                // do nothing
+              } else if (
+                line.includes('-   repo: https://github.com/psf/black') &&
+                FORMATTING_TOOL.toLowerCase() === 'ruff'
+              ) {
+                isFormatter = true;
+                return `-   repo: https://github.com/astral-sh/ruff-pre-commit`;
+              } else if (line.includes('repo:')) {
+                isFormatter = false;
+                return line;
+              } else if (
+                isFormatter &&
+                FORMATTING_TOOL.toLowerCase() === 'ruff'
+              ) {
+                if (line.includes('    rev: 23.11.0')) {
+                  return '    rev: v0.1.5';
+                } else if (line.includes('    hooks:')) {
+                  return '    hooks:';
+                } else if (line.includes('    -   id: black')) {
+                  return '    -   id: ruff-format';
+                } else {
+                  isFormatter = false;
+                  return line;
+                }
               } else {
                 return line;
               }

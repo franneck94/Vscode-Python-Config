@@ -44,4 +44,4 @@ repos:
     rev: v1.6.1
     hooks:
     -   id: mypy
-        args: [--strict, --ignore-missing-imports]
+        args: [--ignore-missing-imports]
