@@ -3,6 +3,20 @@
 ## TODO
 
 - Add "TRIO" for ruff in aggressive mode
+- Fix mypy's exclude for the pre-commit hook
+
+## Version 6.3.0: Nov 20, 2023
+
+- **Info**: Added tox, ipython and ipykernel
+- **Info**: Bumped mypy, ruff, pyright, mkdocs
+- **Info**: Removed mypy pre-commti hook for jupyter notebook
+- **Info**: Added exclude field for pyright in pyproject.toml
+- **Info**: Removed mypy strict flag for decorators
+- **Info**: Added the option for ruff-format on jupyter files
+
+## Version 6.2.0: Nov 15, 2023
+
+- **Info**: Bumped some version
 
 ## Version 6.1.0: Nov 10, 2023
 

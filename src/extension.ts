@@ -31,6 +31,8 @@ const LINE_LENGTH_DEFAULT = 120;
 const IS_AGGRESSIVE_DEFAULT = false;
 const PY_TARGET_DEFAULT = '3.10';
 const FORMATTING_TOOL_DEFAULT = 'black';
+const RUFF_VERSION = 'v0.1.6';
+const BLACK_VERSION = '23.11.0';
 
 const AGGRESSIVE_SELECTS =
   '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "BLE", "B", "A", "COM", "C4", "EXE", "FA", "ISC", "ICN", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "TD", "FIX", "PD", "PL", "TRY", "FLY", "NPY", "PERF", "FURB", "RUF"]';
@@ -205,10 +207,8 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
                   return 'skip-magic-trailing-comma = false';
                 } else if (line.includes('ignore=')) {
                   return 'ignore=';
-                } else if (line.startsWith('reportUntypedClassDecorator')) {
-                  // START PYRIGHT
-                  return 'reportUntypedClassDecorator = true';
                 } else if (line.startsWith('reportUntypedFunctionDecorator')) {
+                  // START PYRIGHT
                   return 'reportUntypedFunctionDecorator = true';
                 } else if (line.startsWith('reportUntypedNamedTuple')) {
                   return 'reportUntypedNamedTuple = true';
@@ -281,12 +281,12 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
                 isFormatter &&
                 FORMATTING_TOOL.toLowerCase() === 'ruff'
               ) {
-                if (line.includes('    rev: 23.11.0')) {
-                  return '    rev: v0.1.5';
+                if (line.includes(`    rev: ${BLACK_VERSION}`)) {
+                  return `    rev: ${RUFF_VERSION}`;
                 } else if (line.includes('    hooks:')) {
                   return '    hooks:';
                 } else if (line.includes('    -   id: black')) {
-                  return '    -   id: ruff-format';
+                  return '    -   id: ruff-format\n        types_or: [python, pyi, jupyter]';
                 } else {
                   isFormatter = false;
                   return line;
@@ -296,7 +296,12 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
               }
             });
 
-            templateData = Buffer.from(modifiedData.join('\r\n'), 'utf8');
+            templateData = Buffer.from(
+              modifiedData
+                .filter((value: string | undefined) => value !== undefined)
+                .join('\r\n'),
+              'utf8',
+            );
           } else if (filename === 'requirements-dev.txt') {
             const data = templateData.toString().split('\n');
 

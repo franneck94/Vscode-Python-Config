@@ -160,3 +160,4 @@ reportOptionalOperand = false
 reportOptionalSubscript = false
 reportPrivateImportUsage = false
 reportUnboundVariable = false
+exclude = ["docs", "setup.py"]

@@ -31,8 +31,8 @@ Just run the command 'Generate Python Config Files' in VSCode's command palette.
 
 - ⚙️ Line Length: Max. line length for the tools (defaults to 120, Global Setting)
 - ⚙️ Is Aggressive: If set to true, mypy, ruff and others will have activated most of its features (defaults to false, Global Setting)
-- ⚙️ Python Target Version: Various tools has some features based on the "minimal" python version for that project (defaults to 3.10)
-- ⚙️ Formatting tool: The python formatter that should be used (defaults to black)
+- ⚙️ Python Target Version: Various tools has some features based on the "minimal" python version for that project (defaults to 3.10, Global Setting)
+- ⚙️ Formatting tool: The python formatter that should be used (defaults to black, Global Setting)
 
 ## Release Notes
 
