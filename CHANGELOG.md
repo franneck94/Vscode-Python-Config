@@ -5,6 +5,10 @@
 - Add "TRIO" for ruff in aggressive mode
 - Fix mypy's exclude for the pre-commit hook
 
+## Version 6.4.0: Nov 27, 2023
+
+- **Info**: Bumped some version
+
 ## Version 6.3.0: Nov 20, 2023
 
 - **Info**: Added tox, ipython and ipykernel
