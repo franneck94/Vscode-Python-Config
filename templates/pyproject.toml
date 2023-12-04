@@ -19,29 +19,8 @@ sections = [
     "FIRSTPARTY",
     "LOCALFOLDER"
 ]
-default_section = "FIRSTPARTY"
-known_third_party = [
-    "numpy",
-    "pandas",
-    "keras",
-    "tensorflow",
-    "sklearn",
-    "matplotlib",
-    "scipy",
-    "h5py",
-    "seaborn",
-    "numba",
-    "gym",
-    "PyQt5",
-    "PyQt6",
-    "pyqtgraph",
-    "torch",
-    "tqdm",
-    "cv2",
-    "skimage",
-    "tensorcross",
-    "tensorflow_datasets"
-]
+default_section = "THIRDPARTY"
+known_third_party = []
 known_first_party = []
 known_local_folder = []
 # style: black
@@ -63,9 +42,9 @@ filter_files = true
 [tool.ruff]
 target-version = "py310"
 select = ["F", "E"]
-extend-select = ["W", "A", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "RUF"]
-ignore = ["F401", "E402"]
-fixable = ["F", "E", "W", "A", "RET", "SIM", "PLC", "PLE", "PLR", "PLW", "RUF"]
+extend-select = ["W", "C90", "I", "N", "ANN", "B", "A", "C4", "PERF", "RUF"]
+ignore = ["I001", "N999", "ANN101", "ANN401", "B905", "PERF203"]
+fixable = ["W", "C90", "I", "N", "ANN", "B", "A", "C4", "PERF", "RUF"]
 unfixable = []
 line-length = 120
 indent-width = 4
@@ -80,7 +59,13 @@ lines-after-imports = 2
 known-first-party = []
 known-local-folder = []
 known-third-party = []
-section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder"
+]
 [tool.ruff.mccabe]
 max-complexity = 24
 [tool.ruff.pycodestyle]
