@@ -12,3 +12,4 @@ package-lock.json
 
 tests/Project/
 !tests/Project/main.py
+!tests/Project/docs/docs.py
