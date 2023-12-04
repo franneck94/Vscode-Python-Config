@@ -1,9 +1,9 @@
 # Python Config Change Log
 
-## TODO
+## Version 6.5.0: Nov 27, 2023
 
-- Add "TRIO" for ruff in aggressive mode
-- Fix mypy's exclude for the pre-commit hook
+- **Info**: Add "TRIO" for ruff in aggressive mode
+- **Info**: Fix mypy's exclude for the pre-commit hook
 
 ## Version 6.4.0: Nov 27, 2023
 
