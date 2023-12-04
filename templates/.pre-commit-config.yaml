@@ -43,5 +43,6 @@ repos:
     rev: v1.7.1
     hooks:
     -   id: mypy
+        language: system
         pass_filenames: false
         args: ['.']
