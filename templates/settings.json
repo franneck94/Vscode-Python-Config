@@ -158,7 +158,7 @@
     "jupyter.askForKernelRestart": false,
     "jupyter.themeMatplotlibPlots": true,
     "jupyter.logging.level": "error",
-    "notebook.formatOnSave.enabled": true,
+    "notebook.formatOnSave.enabled": false,
     "notebook.output.textLineLimit": 20,
     "notebook.compactView": false,
     "notebook.diff.ignoreMetadata": true,

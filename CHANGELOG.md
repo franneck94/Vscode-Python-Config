@@ -1,5 +1,11 @@
 # Python Config Change Log
 
+## Version 7.0.0: Dec 09, 2023
+
+- **Info**: Remmoved cython-lint from pre-commit
+- **Info**: Changed "notebook.formatOnSave.enabled" to false per default and to true in aggressive mode
+- **Info**: Bumped some version
+
 ## Version 6.6.0: Dec 06, 2023
 
 - **Info**: Bumped some version

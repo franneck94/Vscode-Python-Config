@@ -144,6 +144,12 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
             } else {
               templateData['ruff.fixAll'] = false;
             }
+
+            if (IS_AGGRESSIVE) {
+              templateData['notebook.formatOnSave.enabled'] = true;
+            } else {
+              templateData['notebook.formatOnSave.enabled'] = false;
+            }
           }
 
           writeJsonFile(targetFilename, templateData);
