@@ -81,6 +81,8 @@ indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
 preview = false
+docstring-code-format = true
+extend-include = ["*.ipynb"]
 
 [tool.mypy]
 # Platform configuration

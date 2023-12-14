@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 7.1.0: Dec 14, 2023
+
+- **Info**: Bumped some version
+
 ## Version 7.0.0: Dec 09, 2023
 
 - **Info**: Remmoved cython-lint from pre-commit

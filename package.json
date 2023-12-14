@@ -2,7 +2,7 @@
     "name": "vscode-python-config",
     "displayName": "Python Config",
     "description": "Creates config files for modern Python projects",
-    "version": "7.0.0",
+    "version": "7.1.0",
     "publisher": "franneck94",
     "license": "MIT",
     "icon": "icon.png",
