@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 7.1.1: Dec 14, 2023
+
+- **Info**: Bug fix for ruff
+
 ## Version 7.1.0: Dec 14, 2023
 
 - **Info**: Bumped some version
