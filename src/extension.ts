@@ -31,8 +31,8 @@ const LINE_LENGTH_DEFAULT = 120;
 const IS_AGGRESSIVE_DEFAULT = false;
 const PY_TARGET_DEFAULT = '3.10';
 const FORMATTING_TOOL_DEFAULT = 'black';
-const RUFF_VERSION = 'v0.1.8';
-const BLACK_VERSION = '23.12.0';
+const RUFF_VERSION = 'v0.1.9';
+const BLACK_VERSION = '23.12.1';
 
 const AGGRESSIVE_SELECTS =
   '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "BLE", "B", "A", "COM", "C4", "EXE", "FA", "ISC", "ICN", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "TD", "FIX", "PD", "PL", "TRY", "FLY", "NPY", "PERF", "FURB", "RUF", "TRIO"]';
