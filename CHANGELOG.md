@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 7.3.0: Jan 03, 2024
+
+- **Info**: Bumped some version
+
 ## Version 7.2.0: Dec 23, 2023
 
 - **Info**: Bumped some version
