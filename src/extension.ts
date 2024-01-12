@@ -31,7 +31,7 @@ const LINE_LENGTH_DEFAULT = 120;
 const IS_AGGRESSIVE_DEFAULT = false;
 const PY_TARGET_DEFAULT = '3.10';
 const FORMATTING_TOOL_DEFAULT = 'black';
-const RUFF_VERSION = 'v0.1.11';
+const RUFF_VERSION = 'v0.1.12';
 const BLACK_VERSION = '23.12.1';
 
 const AGGRESSIVE_SELECTS =
