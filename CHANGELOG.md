@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 8.1.0: Jan 12, 2024
+
+- **Info**: Bumped some version
+
 ## Version 8.0.0: Jan 12, 2024
 
 - **Info**: Ruff Format is now the Default
