@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 8.2.0: Jan 12, 2024
+
+- **Info**: Added ipympl
+
 ## Version 8.1.0: Jan 12, 2024
 
 - **Info**: Bumped some version

@@ -7,6 +7,7 @@ twine>=4.0.2
 # Jupyter
 ipython>=8.20.0
 ipykernel>=6.28.0
+ipympl>=0.9.3
 
 # Linting/Tooling
 black>=23.12.1
