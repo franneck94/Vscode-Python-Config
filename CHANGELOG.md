@@ -1,6 +1,10 @@
 # Python Config Change Log
 
-## Version 8.2.0: Jan 12, 2024
+## Version 8.3.0: Jan 14, 2024
+
+- **Info**: Added defaultFormatter for toml files in settings.json
+
+## Version 8.2.0: Jan 14, 2024
 
 - **Info**: Added ipympl
 
