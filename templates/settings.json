@@ -91,7 +91,8 @@
     "[toml]": {
         "editor.wordWrap": "wordWrapColumn",
         "editor.wordWrapColumn": 80,
-        "editor.defaultFormatter": "tamasfe.even-better-toml"
+        "editor.defaultFormatter": "tamasfe.even-better-toml",
+        "editor.formatOnSave": true
     },
     // BetterComments
     "better-comments.tags": [

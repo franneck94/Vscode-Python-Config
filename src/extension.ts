@@ -31,15 +31,13 @@ const LINE_LENGTH_DEFAULT = 120;
 const IS_AGGRESSIVE_DEFAULT = false;
 const PY_TARGET_DEFAULT = '3.10';
 const FORMATTING_TOOL_DEFAULT = 'ruff';
-const RUFF_VERSION = 'v0.1.13';
-const BLACK_VERSION = '23.12.1';
+const RUFF_VERSION = 'v0.1.15';
+const BLACK_VERSION = '24.1.1';
 
 const AGGRESSIVE_SELECTS =
   '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "BLE", "B", "A", "COM", "C4", "EXE", "FA", "ISC", "ICN", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "TD", "FIX", "PD", "PL", "TRY", "FLY", "NPY", "PERF", "FURB", "RUF", "TRIO"]';
-const AGGRESSIVE_IGNORES =
-  '["I001", "ANN401", "SIM300", "PERF203", "ANN101", "B905", "NPY002", "COM812", "N999", "PTH", "INP001", "TRY003", "PLW1641", "E203", "PLW1514"]';
-const AGGRESSIVE_FIXABLES =
-  '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "BLE", "B", "A", "COM", "C4", "EXE", "FA", "ISC", "ICN", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "TD", "FIX", "PD", "PL", "TRY", "FLY", "NPY", "PERF", "FURB", "RUF", "TRIO"]';
+const AGGRESSIVE_IGNORES = '["I001", "NPY002", "INP001", "TRY003"]';
+const AGGRESSIVE_FIXABLES = AGGRESSIVE_SELECTS;
 const AGGRESSIVE_UNFIXABLES = '[]';
 
 let LINE_LENGTH: number = LINE_LENGTH_DEFAULT;

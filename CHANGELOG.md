@@ -1,5 +1,11 @@
 # Python Config Change Log
 
+## Version 8.4.0: Jan 30, 2024
+
+- **Info**: Bumped some version
+- **Info**: Updated .gitignore
+- **Info**: Removed some ruff ignores in strict mode
+
 ## Version 8.3.0: Jan 14, 2024
 
 - **Info**: Added defaultFormatter for toml files in settings.json
