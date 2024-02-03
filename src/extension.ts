@@ -3,10 +3,10 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import {
-  mkdirRecursive,
-  pathExists,
-  readJsonFile,
-  writeJsonFile,
+	mkdirRecursive,
+	pathExists,
+	readJsonFile,
+	writeJsonFile,
 } from './utils/fileUtils';
 import { getGlobalSetting } from './utils/settings';
 import { disposeItem } from './utils/vscodeUtils';
@@ -31,7 +31,7 @@ const LINE_LENGTH_DEFAULT = 120;
 const IS_AGGRESSIVE_DEFAULT = false;
 const PY_TARGET_DEFAULT = '3.10';
 const FORMATTING_TOOL_DEFAULT = 'ruff';
-const RUFF_VERSION = 'v0.1.15';
+const RUFF_VERSION = 'v0.2.0';
 const BLACK_VERSION = '24.1.1';
 
 const AGGRESSIVE_SELECTS =
