@@ -2,7 +2,7 @@
     "name": "vscode-python-config",
     "displayName": "Python Config",
     "description": "Creates config files for modern Python projects",
-    "version": "8.3.0",
+    "version": "9.0.0",
     "publisher": "franneck94",
     "license": "MIT",
     "icon": "icon.png",
@@ -11,7 +11,7 @@
         "theme": "dark"
     },
     "engines": {
-        "vscode": "^1.85.0"
+        "vscode": "^1.86.0"
     },
     "categories": [
         "Programming Languages",
@@ -59,7 +59,7 @@
                 "Python_Config.aggressiveSettings": {
                     "type": "boolean",
                     "default": false,
-                    "description": "If tools like mypy and ruff should be harsh with your code.",
+                    "description": "If tools like mypy and ruff should have activated most of its checks.",
                     "scope": "machine"
                 },
                 "Python_Config.pythonVersion": {
@@ -72,7 +72,7 @@
                         "3.12"
                     ],
                     "default": "3.10",
-                    "description": "The python target version for the tools.",
+                    "description": "The python target version for the tool settings.",
                     "scope": "machine"
                 },
                 "Python_Config.formattingTool": {

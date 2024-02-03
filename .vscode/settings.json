@@ -11,5 +11,6 @@
     "[jsonc]": {
         "editor.formatOnSave": true
     },
-    "importSorter.generalConfiguration.sortOnBeforeSave": true
+    "importSorter.generalConfiguration.sortOnBeforeSave": true,
+    "spellright.documentTypes": ["markdown", "latex", "plaintext"]
 }
