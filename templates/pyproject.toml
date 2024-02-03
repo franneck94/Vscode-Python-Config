@@ -12,13 +12,7 @@ force-exclude = '''
 
 [tool.isort]
 py_version = 310
-sections = [
-    "FUTURE",
-    "STDLIB",
-    "THIRDPARTY",
-    "FIRSTPARTY",
-    "LOCALFOLDER"
-]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 default_section = "THIRDPARTY"
 known_third_party = []
 known_first_party = []
@@ -33,26 +27,24 @@ line_length = 120
 split_on_trailing_comma = true
 lines_after_imports = 2
 force_single_line = true
-skip_glob = [
-  "docs/*",
-  "setup.py"
-]
+skip_glob = ["docs/*", "setup.py"]
 filter_files = true
 
 [tool.ruff]
 target-version = "py310"
-select = ["F", "E"]
-extend-select = ["W", "C90", "I", "N", "ANN", "B", "A", "C4", "PERF", "RUF"]
-ignore = ["I001", "N999", "ANN101", "ANN401", "B905", "PERF203"]
-fixable = ["W", "C90", "I", "N", "ANN", "B", "A", "C4", "PERF", "RUF"]
-unfixable = []
-line-length = 120
+line-length = 80
 indent-width = 4
 extend-exclude = ["docs", "test", "tests"]
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 [tool.ruff.lint]
+select = ["F", "E"]
+extend-select = ["W", "C90", "I", "N", "B", "A", "C4", "PERF", "RUF"]
+ignore = []
+fixable = ["W", "C90", "I", "N", "B", "A", "C4", "PERF", "RUF"]
+
+unfixable = []
 preview = true
-[tool.ruff.isort]
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+[tool.ruff.lint.isort]
 force-single-line = true
 force-sort-within-sections = false
 lines-after-imports = 2
@@ -64,15 +56,15 @@ section-order = [
     "standard-library",
     "third-party",
     "first-party",
-    "local-folder"
+    "local-folder",
 ]
-[tool.ruff.mccabe]
+[tool.ruff.lint.mccabe]
 max-complexity = 24
-[tool.ruff.pycodestyle]
+[tool.ruff.lint.pycodestyle]
 ignore-overlong-task-comments = true
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"
-[tool.ruff.flake8-annotations]
+[tool.ruff.lint.flake8-annotations]
 allow-star-arg-any = true
 ignore-fully-untyped = true
 [tool.ruff.format]

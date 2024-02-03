@@ -2,7 +2,9 @@
 
 ## Version 9.0.0: Feb 3, 2024
 
-- **Info**: Updated launch.json target from
+- **Info**: Updated launch.json target from "python" to "debugpy"
+- **Info**: Added creation of *requirements.txt* with recursive *requirements-dev.txt*, but only if *requirements.txt* is not already present
+- **Info**: Updated to ruff 0.2.0
 
 ## Version 8.4.0: Jan 30, 2024
 
