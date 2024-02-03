@@ -12,7 +12,6 @@
     "editor.suggest.preview": true,
     // Terminal
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
-    "terminal.integrated.enableMultiLinePasteWarning": false,
     // Debug
     "debug.onTaskErrors": "debugAnyway",
     // Explorer

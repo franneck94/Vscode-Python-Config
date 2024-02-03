@@ -25,6 +25,7 @@ const ROOT_DIR_FILES = [
   '.pre-commit-config.yaml',
   'pyproject.toml',
   'requirements-dev.txt',
+  'requirements.txt',
 ];
 
 const LINE_LENGTH_DEFAULT = 120;
@@ -34,9 +35,9 @@ const FORMATTING_TOOL_DEFAULT = 'ruff';
 const RUFF_VERSION = 'v0.2.0';
 const BLACK_VERSION = '24.1.1';
 
-const AGGRESSIVE_SELECTS =
-  '["W", "C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "BLE", "B", "A", "COM", "C4", "EXE", "FA", "ISC", "ICN", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "TD", "FIX", "PD", "PL", "TRY", "FLY", "NPY", "PERF", "FURB", "RUF", "TRIO"]';
-const AGGRESSIVE_IGNORES = '["I001", "NPY002", "INP001", "TRY003"]';
+const AGGRESSIVE_SELECTS = '["ALL"]';
+const AGGRESSIVE_IGNORES =
+  '["I001", "NPY002", "INP001", "TRY003", "CPY", "D", "T"]';
 const AGGRESSIVE_FIXABLES = AGGRESSIVE_SELECTS;
 const AGGRESSIVE_UNFIXABLES = '[]';
 
@@ -312,7 +313,17 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
             templateData = Buffer.from(data.join('\r\n'), 'utf8');
           }
 
-          fs.writeFileSync(targetFilename, templateData);
+          if (filename === 'requirements.txt') {
+            const data = templateData.toString().split('\n');
+
+            templateData = Buffer.from(data.join('\r\n'), 'utf8');
+
+            if (!pathExists(targetFilename)) {
+              fs.writeFileSync(targetFilename, templateData);
+            }
+          } else {
+            fs.writeFileSync(targetFilename, templateData);
+          }
         } catch (err) {
           vscode.window.showErrorMessage(
             `Could not write file ${targetFilename}.`,
