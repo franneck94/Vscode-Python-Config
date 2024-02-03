@@ -35,9 +35,10 @@ const FORMATTING_TOOL_DEFAULT = 'ruff';
 const RUFF_VERSION = 'v0.2.0';
 const BLACK_VERSION = '24.1.1';
 
-const AGGRESSIVE_SELECTS = '["ALL"]';
+const AGGRESSIVE_SELECTS =
+  '["C90", "I", "N", "D", "UP", "YTT", "ANN", "ASYNC", "TRIO", "S", "BLE", "B", "A", "COM", "C4", "DTZ", "T10", "DJ", "EM", "EXE", "FA", "ISC", "ICN", "G", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "PD", "PL", "TRY", "FLY", "NPY", "AIR", "PERF", "FURB", "LOG", "RUF"]';
 const AGGRESSIVE_IGNORES =
-  '["I001", "NPY002", "INP001", "TRY003", "CPY", "D", "T"]';
+  '["ANN101", "ANN102", "I001", "NPY002", "INP001", "TRY003", "ISC001", "COM812"]';
 const AGGRESSIVE_FIXABLES = AGGRESSIVE_SELECTS;
 const AGGRESSIVE_UNFIXABLES = '[]';
 
