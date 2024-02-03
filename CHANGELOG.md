@@ -4,7 +4,7 @@
 
 - **Info**: Updated launch.json target from "python" to "debugpy"
 - **Info**: Added creation of *requirements.txt* with recursive *requirements-dev.txt*, but only if *requirements.txt* is not already present
-- **Info**: Updated to ruff 0.2.0
+- **Info**: Updated to ruff 0.2.0, also updated ruff toml setting names
 
 ## Version 8.4.0: Jan 30, 2024
 
