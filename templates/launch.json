@@ -3,7 +3,7 @@
     "configurations": [
         {
             "name": "PyDebug: Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -13,7 +13,7 @@
         // The example below can be used to always debug the same file
         {
             "name": "PyDebug: Main File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/main.py",
             "console": "integratedTerminal",
