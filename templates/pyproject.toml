@@ -39,8 +39,7 @@ extend-exclude = ["docs", "test", "tests"]
 select = ["F", "E"]
 extend-select = ["W", "C90", "I", "N", "B", "A", "C4", "PERF", "RUF"]
 ignore = []
-fixable = ["W", "C90", "I", "N", "B", "A", "C4", "PERF", "RUF"]
-
+fixable = ["ALL"]
 unfixable = []
 preview = true
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
@@ -67,6 +66,11 @@ convention = "numpy"
 [tool.ruff.lint.flake8-annotations]
 allow-star-arg-any = true
 ignore-fully-untyped = true
+[tool.ruff.lint.pylint]
+max-args = 5
+max-branches = 12
+max-locals = 15
+max-statements = 50
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"

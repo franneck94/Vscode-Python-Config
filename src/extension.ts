@@ -3,10 +3,10 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import {
-	mkdirRecursive,
-	pathExists,
-	readJsonFile,
-	writeJsonFile,
+  mkdirRecursive,
+  pathExists,
+  readJsonFile,
+  writeJsonFile,
 } from './utils/fileUtils';
 import { getGlobalSetting } from './utils/settings';
 import { disposeItem } from './utils/vscodeUtils';
@@ -39,7 +39,7 @@ const AGGRESSIVE_SELECTS =
   '["C90", "I", "N", "UP", "YTT", "ANN", "ASYNC", "TRIO", "S", "BLE", "B", "A", "COM", "C4", "DTZ", "T10", "DJ", "EM", "EXE", "FA", "ISC", "ICN", "G", "INP", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "PD", "PL", "TRY", "FLY", "NPY", "AIR", "PERF", "FURB", "LOG", "RUF"]';
 const AGGRESSIVE_IGNORES =
   '["ANN101", "ANN102", "I001", "NPY002", "INP001", "TRY003", "ISC001", "COM812"]';
-const AGGRESSIVE_FIXABLES = AGGRESSIVE_SELECTS;
+const AGGRESSIVE_FIXABLES = '["ALL"]';
 const AGGRESSIVE_UNFIXABLES = '[]';
 
 let LINE_LENGTH: number = LINE_LENGTH_DEFAULT;

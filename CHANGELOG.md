@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 9.1.0: Feb 4, 2024
+
+- **Info**: Set ruff's fixable to "ALL" instead of a long list
+- **Info**: Added some *tool.ruff.lint.pylint* settings
+
 ## Version 9.0.0: Feb 3, 2024
 
 - **Info**: Updated launch.json target from "python" to "debugpy"
