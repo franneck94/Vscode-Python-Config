@@ -150,6 +150,55 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
             } else {
               templateData['notebook.formatOnSave.enabled'] = false;
             }
+          } else if (filename === 'launch.json') {
+            if (pathExists(targetFilename)) {
+              const targetFileData: {
+                [key: string]: string | any[] | boolean | number | any;
+              } = readJsonFile(targetFilename);
+
+              if (
+                targetFileData['configurations'] &&
+                templateData['configurations']
+              ) {
+                const mergedData = [...templateData['configurations']];
+
+                for (const targetFileDataItem of targetFileData[
+                  'configurations'
+                ]) {
+                  const labelExistsInUserConfig = mergedData.some(
+                    (task) => task['name'] === targetFileDataItem['name'],
+                  );
+
+                  if (!labelExistsInUserConfig) {
+                    mergedData.push(targetFileDataItem);
+                  }
+                }
+
+                templateData['configurations'] = mergedData;
+              }
+            }
+          } else if (filename === 'tasks.json') {
+            if (pathExists(targetFilename)) {
+              const targetFileData: {
+                [key: string]: string | any[] | boolean | number | any;
+              } = readJsonFile(targetFilename);
+
+              if (targetFileData['tasks'] && templateData['tasks']) {
+                const mergedData = [...templateData['tasks']];
+
+                for (const targetFileDataItem of targetFileData['tasks']) {
+                  const labelExistsInUserConfig = mergedData.some(
+                    (task) => task.label === targetFileDataItem['label'],
+                  );
+
+                  if (!labelExistsInUserConfig) {
+                    mergedData.push(targetFileDataItem);
+                  }
+                }
+
+                templateData['tasks'] = mergedData;
+              }
+            }
           }
 
           writeJsonFile(targetFilename, templateData);
