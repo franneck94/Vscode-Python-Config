@@ -2,7 +2,7 @@
 
 ## Version 9.2.0: Feb 4, 2024
 
-- **Info**: For launch.json and tasks.json, additional tasks or configs are no more deleted. For now, the settings.json file is still completely overriden
+- **Info**: For launch.json and tasks.json, additional tasks or configs are no more deleted. For now, the settings.json file is still completely overridden
 
 ## Version 9.1.0: Feb 4, 2024
 
