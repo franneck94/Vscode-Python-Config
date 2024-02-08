@@ -2,26 +2,25 @@
 
 Creates config files with pre-defined settings for modern Python projects in your *workspace*.  
 
-The following files will be created in the local .vscode folder:
+The following files will be created in the local .vscode folder, if one of these files already exists, they *are* overridden:
 
 - settings.json: Best default settings for Python-related extensions
 - launch.json: Debug config to debug the current Python file
 - tasks.json: Task to run the current Python file
 
-The following files will be created in the root directory:
+The following files will be created in the root directory, if one of these files already exists, they are  *not* overridden:
 
 - General IDE Files
   - .editorconfig: Standard file settings (line-feed, insert new-line, etc.)
   - .gitattributes: Gives attributes to pathnames
   - .gitingore: Specifies intentionally untracked files to ignore
+
+The following files will be created in the root directory, if one of these files already exists, they *are* overridden:
+
 - Python specific Files
   - .pre-commit-config.yaml: Tools to run on every git commit
   - requirements-dev.txt: List of python packages to install
   - pyproject.toml: General settings for the linters and formatters
-
-**Note**: If one of these files already exists, they are *overridden*.  
-
-**Hint**: You can also copy the content of the locally generated settings.json file to your global vscode settings.
 
 ## How to use
 

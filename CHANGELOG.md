@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 10.0.0: Feb 08, 2024
+
+- **Info**: General root dir files are not overridden anymore
+
 ## Version 9.2.0: Feb 4, 2024
 
 - **Info**: For launch.json and tasks.json, additional tasks or configs are no more deleted. For now, the settings.json file is still completely overridden

@@ -18,10 +18,12 @@ let EXTENSION_PATH: string | undefined;
 
 const EXTENSION_NAME = 'Python_Config';
 const VSCODE_DIR_FILES = ['launch.json', 'settings.json', 'tasks.json'];
-const ROOT_DIR_FILES = [
+const ROOT_DIR_FILES_GENERAL = [
   '.editorconfig',
   '.gitattributes',
   '.gitignore',
+];
+const ROOT_DIR_FILES_PYTHON = [
   '.pre-commit-config.yaml',
   'pyproject.toml',
   'requirements-dev.txt',
@@ -210,7 +212,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
         }
       });
 
-      ROOT_DIR_FILES.forEach((filename) => {
+      ROOT_DIR_FILES_PYTHON.forEach((filename) => {
         if (!WORKSPACE_FOLDER) return;
 
         const targetFilename = path.join(WORKSPACE_FOLDER, filename);
@@ -372,6 +374,27 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
               fs.writeFileSync(targetFilename, templateData);
             }
           } else {
+            fs.writeFileSync(targetFilename, templateData);
+          }
+        } catch (err) {
+          vscode.window.showErrorMessage(
+            `Could not write file ${targetFilename}.`,
+          );
+          return;
+        }
+      });
+
+      ROOT_DIR_FILES_GENERAL.forEach((filename) => {
+        if (!WORKSPACE_FOLDER) return;
+
+        const targetFilename = path.join(WORKSPACE_FOLDER, filename);
+        const templateFilename = path.join(templatePath, filename);
+
+        try {
+          const templateData = fs.readFileSync(templateFilename);
+
+          // dont override files
+          if (!pathExists(targetFilename)) {
             fs.writeFileSync(targetFilename, templateData);
           }
         } catch (err) {
