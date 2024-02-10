@@ -1,26 +1,25 @@
 # VSCode Python Config
 
-Creates config files with pre-defined settings for modern Python projects in your *workspace*.  
+Creates config files with pre-defined settings for modern Python projects in your VSCode *workspace*.  
 
-The following files will be created in the local .vscode folder, if one of these files already exists, they *are* overridden:
+Files in the workspace's .vscode folder (files **are** overridden):
 
-- settings.json: Best default settings for Python-related extensions
-- launch.json: Debug config to debug the current Python file
-- tasks.json: Task to run the current Python file
+- settings.json: Best settings for Python-related extensions
+- launch.json: Configurations for debugging your python projects
+- tasks.json: Tasks to execute your python projects
 
-The following files will be created in the root directory, if one of these files already exists, they are  *not* overridden:
+General IDE Files in the root directory (files are **not** overridden):
 
-- General IDE Files
-  - .editorconfig: Standard file settings (line-feed, insert new-line, etc.)
-  - .gitattributes: Gives attributes to pathnames
-  - .gitingore: Specifies intentionally untracked files to ignore
+- .editorconfig: Standard file settings (line-feed, insert new-line, etc.)
+- .gitattributes: Gives attributes to pathnames
+- .gitingore: Specifies intentionally untracked files to ignore
 
-The following files will be created in the root directory, if one of these files already exists, they *are* overridden:
+Python-specific files in the root directory (files **are** overridden):
 
-- Python specific Files
-  - .pre-commit-config.yaml: Tools to run on every git commit
-  - requirements-dev.txt: List of python packages to install
-  - pyproject.toml: General settings for the linters and formatters
+- .pre-commit-config.yaml: Tools to run on every git commit
+- pyproject.toml: General settings for the linters and formatters
+- requirements-dev.txt: Python packages to install for developers (linter, testing etc.)
+- requirements.txt: Python packages to install for users (starts as an empty file)
 
 ## How to use
 

@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 10.0.1: Feb 10, 2024
+
+- **Info**: Add requirements.txt to the list of created files in the README
+
 ## Version 10.0.0: Feb 08, 2024
 
 - **Info**: General root dir files are not overridden anymore
