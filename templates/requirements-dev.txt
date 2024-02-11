@@ -6,15 +6,15 @@ setuptools>=69.0.2
 
 # Jupyter
 ipython>=8.21.0
-ipykernel>=6.29.0
+ipykernel>=6.29.2
 
 # Linting/Formatting
-ruff>=0.2.0
+ruff>=0.2.1
 black>=24.1.1
 isort>=5.13.2
 
 # Tooling
-pre-commit>=3.6.0
+pre-commit>=3.6.1
 
 # Type Checker
 mypy>=1.8.0
@@ -31,6 +31,6 @@ tox>=4.12.1
 # Documentation
 mkdocs>=1.5.3
 mkdocstrings>=0.24.0
-mkdocs-material>=9.5.7
+mkdocs-material>=9.5.9
 mkdocstrings-python>=1.8.0
 Pygments>=2.17.2
