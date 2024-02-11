@@ -2,24 +2,24 @@
 
 Creates config files with pre-defined settings for modern Python projects in your VSCode *workspace*.  
 
-Files in the workspace's .vscode folder (files **are** overridden):
+Files in the workspace's .vscode folder:
 
 - settings.json: Best settings for Python-related extensions
 - launch.json: Configurations for debugging your python projects
 - tasks.json: Tasks to execute your python projects
 
-General IDE Files in the root directory (files are **not** overridden):
-
-- .editorconfig: Standard file settings (line-feed, insert new-line, etc.)
-- .gitattributes: Gives attributes to pathnames
-- .gitingore: Specifies intentionally untracked files to ignore
-
-Python-specific files in the root directory (files **are** overridden):
+Python-specific files in the root directory:
 
 - .pre-commit-config.yaml: Tools to run on every git commit
 - pyproject.toml: General settings for the linters and formatters
 - requirements-dev.txt: Python packages to install for developers (linter, testing etc.)
 - requirements.txt: Python packages to install for users (starts as an empty file)
+
+General IDE Files in the root directory (files are **not** overridden if already existing):
+
+- .editorconfig: Standard file settings (line-feed, insert new-line, etc.)
+- .gitattributes: Gives attributes to pathnames
+- .gitingore: Specifies intentionally untracked files to ignore
 
 ## How to use
 
