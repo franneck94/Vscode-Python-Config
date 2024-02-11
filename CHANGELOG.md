@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 11.0.0: Feb 11, 2024
+
+- **Info**: Merge Existing pyproject.toml with template data, to not lose \[project\] keys
+
 ## Version 10.0.1: Feb 10, 2024
 
 - **Info**: Add requirements.txt to the list of created files in the README

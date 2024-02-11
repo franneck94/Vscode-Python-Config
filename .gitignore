@@ -10,6 +10,6 @@ package-lock.json
 *.log
 *.exe
 
-tests/Project/.*
-tests/Project/require*
-tests/Project/py*
+tests/SimpleRepo/.*
+tests/SimpleRepo/require*
+tests/SimpleRepo/py*

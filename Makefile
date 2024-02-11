@@ -1,15 +1,15 @@
 clean:
-	rm -rf tests/Project/.vscode/tasks.json
-	rm -rf tests/Project/.vscode/launch.json
-	rm -rf tests/Project/.vscode/settings.json
-	rm -f tests/Project/.editorconfig
-	rm -f tests/Project/.gitattributes
-	rm -f tests/Project/.gitignore
-	rm -f tests/Project/.pre-commit-config.yaml
-	rm -f tests/Project/requirements.txt
-	rm -f tests/Project/requirements-dev.txt
-	rm -f tests/Project/setup.cfg
-	rm -f tests/Project/pyproject.toml
-	rm -f tests/Project/.mypy-cache/
+	rm -rf tests/SimpleRepo/.vscode/tasks.json
+	rm -rf tests/SimpleRepo/.vscode/launch.json
+	rm -rf tests/SimpleRepo/.vscode/settings.json
+	rm -f tests/SimpleRepo/.editorconfig
+	rm -f tests/SimpleRepo/.gitattributes
+	rm -f tests/SimpleRepo/.gitignore
+	rm -f tests/SimpleRepo/.pre-commit-config.yaml
+	rm -f tests/SimpleRepo/requirements.txt
+	rm -f tests/SimpleRepo/requirements-dev.txt
+	rm -f tests/SimpleRepo/setup.cfg
+	rm -f tests/SimpleRepo/pyproject.toml
+	rm -f tests/SimpleRepo/.mypy-cache/
 
 .phony: clean

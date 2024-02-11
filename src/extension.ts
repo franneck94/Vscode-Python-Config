@@ -5,10 +5,10 @@ import * as vscode from 'vscode';
 import * as toml from '@iarna/toml';
 
 import {
-	mkdirRecursive,
-	pathExists,
-	readJsonFile,
-	writeJsonFile,
+  mkdirRecursive,
+  pathExists,
+  readJsonFile,
+  writeJsonFile,
 } from './utils/fileUtils';
 import { getGlobalSetting } from './utils/settings';
 import { disposeItem } from './utils/vscodeUtils';
@@ -470,10 +470,13 @@ function mergeTomlFiles(
   for (const mergeKey of mergeKeys) {
     if (
       currentTomlData['tool'] !== undefined &&
+      // @ts-ignore
       currentTomlData['tool'][mergeKey] !== undefined
     ) {
+      // @ts-ignore
       mergedTomlData['tool'][mergeKey] = templateTomlData['tool'][mergeKey];
     } else {
+      // @ts-ignore
       mergedTomlData['tool'][mergeKey] = templateTomlData['tool'][mergeKey];
     }
   }
