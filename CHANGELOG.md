@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 11.1.0: Feb 11, 2024
+
+- **Info**: Fixed layout for ruff settings in pyproject.toml
+- **Info**: Bumped versions
+
 ## Version 11.0.1: Feb 11, 2024
 
 - **Info**: Updated README regarding file overwriting
