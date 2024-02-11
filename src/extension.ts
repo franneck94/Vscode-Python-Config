@@ -261,19 +261,22 @@ function saveRootdirPythonFiles(
     if (filename === 'pyproject.toml') {
       let modifiedData = pyprojectTomlContent(data);
 
-      const currentPyprojectData = fs.readFileSync(targetFilename);
-      const currentTomlData = toml.parse(currentPyprojectData.toString());
-      const templateTomlData = toml.parse(templateData.toString());
-
       const fileExistAlready = projectHasAlrearyPyprojectToml(targetFilename);
-      const hasProjectDefinition = projectHasProjectDefinition(currentTomlData);
-      if (fileExistAlready && hasProjectDefinition) {
-        const mergedTomlData = mergeTomlFiles(
-          currentTomlData,
-          templateTomlData,
-        );
-        if (mergedTomlData !== undefined)
-          modifiedData = toml.stringify(mergedTomlData).split('\n');
+      if (fileExistAlready) {
+        const currentPyprojectData = fs.readFileSync(targetFilename);
+        const currentTomlData = toml.parse(currentPyprojectData.toString());
+
+        const hasProjectDefinition =
+          projectHasProjectDefinition(currentTomlData);
+        if (hasProjectDefinition) {
+          const templateTomlData = toml.parse(templateData.toString());
+          const mergedTomlData = mergeTomlFiles(
+            currentTomlData,
+            templateTomlData,
+          );
+          if (mergedTomlData !== undefined)
+            modifiedData = toml.stringify(mergedTomlData).split('\n');
+        }
       }
 
       templateData = Buffer.from(modifiedData.join('\r\n'), 'utf8');
@@ -454,7 +457,7 @@ function projectHasAlrearyPyprojectToml(targetFilename: string): boolean {
 
 function projectHasProjectDefinition(tomlData: toml.JsonMap): boolean {
   try {
-    if (tomlData['tool']) return true;
+    if (tomlData['project'] !== undefined) return true;
   } catch (err) {}
 
   return false;
