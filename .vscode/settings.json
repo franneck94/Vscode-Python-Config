@@ -12,5 +12,12 @@
         "editor.formatOnSave": true
     },
     "importSorter.generalConfiguration.sortOnBeforeSave": true,
-    "spellright.documentTypes": ["markdown", "latex", "plaintext"]
+    "spellright.documentTypes": ["markdown", "latex", "plaintext"],
+    "[toml]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 80,
+        "editor.defaultFormatter": "tamasfe.even-better-toml",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
+    }
 }

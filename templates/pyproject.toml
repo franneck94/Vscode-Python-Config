@@ -53,11 +53,11 @@ known-first-party = []
 known-local-folder = []
 known-third-party = []
 section-order = [
-    "future",
-    "standard-library",
-    "third-party",
-    "first-party",
-    "local-folder",
+  "future",
+  "standard-library",
+  "third-party",
+  "first-party",
+  "local-folder",
 ]
 
 [tool.ruff.lint.mccabe]
