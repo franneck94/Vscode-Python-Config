@@ -324,13 +324,14 @@ function saveRootdirPythonFiles(
         const hasProjectDefinition =
           projectHasProjectDefinition(currentTomlData);
         if (hasProjectDefinition) {
-          const templateTomlData = toml.parse(templateData.toString());
+          const templateTomlData = toml.parse(modifiedData.join('\n'));
           const mergedTomlData = mergeTomlFiles(
             currentTomlData,
             templateTomlData,
           );
-          if (mergedTomlData !== undefined)
+          if (mergedTomlData !== undefined) {
             modifiedData = toml.stringify(mergedTomlData).split('\n');
+          }
         }
       }
 
@@ -380,7 +381,7 @@ function saveRootdirGeneralFiles(
 }
 
 function pyprojectTomlContent(data: string[]) {
-  return data.map((line: string) => {
+  const mapped_data = data.map((line: string) => {
     // START: GENERAL
     if (IS_AGGRESSIVE) {
       // START: MYPY
@@ -400,7 +401,7 @@ function pyprojectTomlContent(data: string[]) {
         return `allow_untyped_globals = false`;
       } else if (line.startsWith('allow_redefinition')) {
         return `allow_redefinition = false`;
-      } else if (line.startsWith('extend-select')) {
+      } else if (line.includes('extend-select')) {
         // START: RUFF
         return 'extend-select = [' + `${AGGRESSIVE_SELECTS}` + ']';
       } else if (line.startsWith('ignore = ')) {
@@ -469,6 +470,8 @@ function pyprojectTomlContent(data: string[]) {
       return line;
     }
   });
+
+  return mapped_data;
 }
 
 function preCommitYamlContent(data: string[]) {

@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 11.1.2: Feb 12, 2024
+
+- **Info**: TOML Lib Bug Fix
+
 ## Version 11.1.1: Feb 12, 2024
 
 - **Info**: TOML Lib Bug Fix
