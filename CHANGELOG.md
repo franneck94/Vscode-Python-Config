@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 11.2.0: Feb 13, 2024
+
+- **Info**: Merge requirements.txt
+- **Bug**: Fixes Formatting in pyproject.toml
+
 ## Version 11.1.2: Feb 12, 2024
 
 - **Info**: TOML Lib Bug Fix

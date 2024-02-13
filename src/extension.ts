@@ -310,56 +310,97 @@ function saveRootdirPythonFiles(
   filename: string,
 ) {
   try {
-    let templateData = fs.readFileSync(templateFilename);
-    const data = templateData.toString().split('\n');
+    const templateDataBuffer = fs.readFileSync(templateFilename);
+    const templateData = templateDataBuffer.toString().split('\n');
 
     if (filename === 'pyproject.toml') {
-      let modifiedData = pyprojectTomlContent(data);
-
-      const fileExistAlready = projectHasAlrearyPyprojectToml(targetFilename);
-      if (fileExistAlready) {
-        const currentPyprojectData = fs.readFileSync(targetFilename);
-        const currentTomlData = toml.parse(currentPyprojectData.toString());
-
-        const hasProjectDefinition =
-          projectHasProjectDefinition(currentTomlData);
-        if (hasProjectDefinition) {
-          const templateTomlData = toml.parse(modifiedData.join('\n'));
-          const mergedTomlData = mergeTomlFiles(
-            currentTomlData,
-            templateTomlData,
-          );
-          if (mergedTomlData !== undefined) {
-            modifiedData = toml.stringify(mergedTomlData).split('\n');
-          }
-        }
-      }
-
-      templateData = Buffer.from(modifiedData.join('\r\n'), 'utf8');
-      fs.writeFileSync(targetFilename, templateData);
+      savePyProjectToml(targetFilename, templateData);
     } else if (filename === '.pre-commit-config.yaml') {
-      const modifiedData = preCommitYamlContent(data);
-
-      templateData = Buffer.from(
-        modifiedData
-          .filter((value: string | undefined) => value !== undefined)
-          .join('\r\n'),
-        'utf8',
-      );
-      fs.writeFileSync(targetFilename, templateData);
+      savePreCommitFile(targetFilename, templateData);
     } else if (
       filename === 'requirements.txt' ||
       filename === 'requirements-dev.txt'
     ) {
-      templateData = Buffer.from(data.join('\r\n'), 'utf8');
-
-      if (!pathExists(targetFilename)) {
-        fs.writeFileSync(targetFilename, templateData);
-      }
+      saveRequirementsFile(targetFilename, templateData);
     }
   } catch (err) {
     vscode.window.showErrorMessage(`Could not write file ${targetFilename}.`);
     return;
+  }
+}
+
+async function savePyProjectToml(
+  targetFilename: string,
+  templateData: string[],
+) {
+  let modifiedData = pyprojectTomlContent(templateData);
+
+  const fileExistAlready = projectHasAlrearyPyprojectToml(targetFilename);
+  if (fileExistAlready) {
+    const currentPyprojectData = fs.readFileSync(targetFilename);
+    const currentTomlData = toml.parse(currentPyprojectData.toString());
+
+    const hasProjectDefinition = projectHasProjectDefinition(currentTomlData);
+    if (hasProjectDefinition) {
+      const templateTomlData = toml.parse(modifiedData.join('\n'));
+      const mergedTomlData = mergeTomlFiles(currentTomlData, templateTomlData);
+      if (mergedTomlData !== undefined) {
+        modifiedData = toml.stringify(mergedTomlData).split('\n');
+
+        modifiedData = modifiedData.map((line: string) => {
+          if (
+            (line.includes('[') && !line.includes('"')) ||
+            (line.includes('=') && line.indexOf('"') >= line.indexOf('='))
+          ) {
+            return line.trimStart().replace('[ ', '[').replace(' ]', ']');
+          } else if (/^ {2}/.test(line)) {
+            return line.replace(/^ {2}/, '    ');
+          } else {
+            return line;
+          }
+        });
+      }
+    }
+  }
+
+  const templateDataBuffer = Buffer.from(modifiedData.join('\r\n'), 'utf8');
+  fs.writeFileSync(targetFilename, templateDataBuffer);
+}
+
+function savePreCommitFile(targetFilename: string, templateData: string[]) {
+  const modifiedData = preCommitYamlContent(templateData);
+
+  const templateDataBuffer = Buffer.from(
+    modifiedData
+      .filter((value: string | undefined) => value !== undefined)
+      .join('\r\n'),
+    'utf8',
+  );
+  fs.writeFileSync(targetFilename, templateDataBuffer);
+}
+
+function saveRequirementsFile(targetFilename: string, templateData: string[]) {
+  if (!pathExists(targetFilename)) {
+    const templateDataBuffer = Buffer.from(templateData.join('\r\n'), 'utf8');
+    fs.writeFileSync(targetFilename, templateDataBuffer);
+  } else {
+    if (targetFilename.includes('requirements.txt')) {
+      const currentRequirementsBuffer = fs.readFileSync(targetFilename);
+      const currentRequirements = currentRequirementsBuffer
+        .toString()
+        .split('\n');
+      const hasDevLinked = currentRequirements.some(
+        (req: string) => req === '-r requirements-dev.txt',
+      );
+      if (!hasDevLinked) {
+        currentRequirements.push('-r requirements-dev.txt');
+        const modifiedCurrentRequirementsBuffer = Buffer.from(
+          currentRequirements.join('\r\n'),
+          'utf8',
+        );
+        fs.writeFileSync(targetFilename, modifiedCurrentRequirementsBuffer);
+      }
+    }
   }
 }
 
@@ -380,104 +421,113 @@ function saveRootdirGeneralFiles(
   }
 }
 
-function pyprojectTomlContent(data: string[]) {
-  const mapped_data = data.map((line: string) => {
-    // START: GENERAL
+function pyprojectTomlContent(templateData: string[]) {
+  const mapped_data = templateData.map((line: string) => {
     if (IS_AGGRESSIVE) {
-      // START: MYPY
-      if (line.startsWith('check_untyped_defs')) {
-        return `check_untyped_defs = true`;
-      } else if (line.startsWith('no_implicit_optional')) {
-        return `no_implicit_optional = true`;
-      } else if (line.startsWith('strict_optional')) {
-        return `strict_optional = true`;
-      } else if (line.startsWith('disallow_untyped_defs')) {
-        return `disallow_untyped_defs = true`;
-      } else if (line.startsWith('disallow_incomplete_defs')) {
-        return `disallow_incomplete_defs = true`;
-      } else if (line.startsWith('disallow_subclassing_any')) {
-        return `disallow_subclassing_any = true`;
-      } else if (line.startsWith('allow_untyped_globals')) {
-        return `allow_untyped_globals = false`;
-      } else if (line.startsWith('allow_redefinition')) {
-        return `allow_redefinition = false`;
-      } else if (line.includes('extend-select')) {
-        // START: RUFF
-        return 'extend-select = [' + `${AGGRESSIVE_SELECTS}` + ']';
-      } else if (line.startsWith('ignore = ')) {
-        return 'ignore = [' + `${AGGRESSIVE_IGNORES}` + ']';
-      } else if (line.startsWith('fixable')) {
-        return `fixable = ${AGGRESSIVE_FIXABLES}`;
-      } else if (line.startsWith('unfixable')) {
-        return `unfixable = ${AGGRESSIVE_UNFIXABLES}`;
-      } else if (line.startsWith('allow-star-arg-any')) {
-        return 'allow-star-arg-any = false';
-      } else if (line.startsWith('ignore-fully-untyped')) {
-        return 'ignore-fully-untyped = false';
-      } else if (line.includes('skip-string-normalization')) {
-        // START: BLACK
-        return 'skip-string-normalization = false';
-      } else if (line.includes('skip-magic-trailing-comma')) {
-        return 'skip-magic-trailing-comma = false';
-      } else if (line.includes('ignore=')) {
-        return 'ignore=';
-      } else if (line.startsWith('reportUntypedFunctionDecorator')) {
-        // START PYRIGHT
-        return 'reportUntypedFunctionDecorator = true';
-      } else if (line.startsWith('reportUntypedNamedTuple')) {
-        return 'reportUntypedNamedTuple = true';
-      } else if (line.startsWith('reportGeneralTypeIssues')) {
-        return 'reportGeneralTypeIssues = true';
-      } else if (line.startsWith('reportOptionalCall')) {
-        return 'reportOptionalCall = true';
-      } else if (line.startsWith('reportOptionalIterable')) {
-        return 'reportOptionalIterable = true';
-      } else if (line.startsWith('reportOptionalMemberAccess')) {
-        return 'reportOptionalMemberAccess = true';
-      } else if (line.startsWith('reportOptionalMemberAccess')) {
-        return 'reportOptionalMemberAccess = true';
-      } else if (line.startsWith('reportOptionalOperand')) {
-        return 'reportOptionalOperand = true';
-      } else if (line.startsWith('reportOptionalSubscript')) {
-        return 'reportOptionalSubscript = true';
-      } else if (line.startsWith('reportPrivateImportUsage')) {
-        return 'reportPrivateImportUsage = true';
-      } else if (line.startsWith('reportUnboundVariable')) {
-        return 'reportUnboundVariable = true';
-      }
+      return aggressiveSettingsPyprojectToml(line);
     }
 
-    // LINE LENGTH
-    if (line.includes('line-length')) {
-      return `line-length = ${LINE_LENGTH}`;
-    } else if (line.includes('line_length')) {
-      return `line_length = ${LINE_LENGTH}`;
-    } else if (line.includes('max-line-length')) {
-      return `max-line-length = ${LINE_LENGTH}`;
-      // TARGET VERSION
-    } else if (line.startsWith("target-version = ['py")) {
-      return `target-version = ['py${PY_TARGET.replace('.', '')}']`;
-    } else if (line.startsWith('py_version = 3')) {
-      return `py_version = ${PY_TARGET.replace('.', '')}`;
-    } else if (line.startsWith('python_version = "3.')) {
-      return `python_version = "${PY_TARGET}"`;
-    } else if (line.startsWith('target-version = "py3')) {
-      return `target-version = "py${PY_TARGET.replace('.', '')}"`;
-    } else if (line.startsWith('pythonVersion = "3.')) {
-      return `pythonVersion = "${PY_TARGET}"`;
-    } else {
-      //EVERYTHING ELSE
-      return line;
-    }
+    return regularSettingsPyprojectToml(line);
   });
 
   return mapped_data;
 }
 
-function preCommitYamlContent(data: string[]) {
+function aggressiveSettingsPyprojectToml(line: string) {
+  // START: MYPY
+  if (line.startsWith('check_untyped_defs')) {
+    return `check_untyped_defs = true`;
+  } else if (line.startsWith('no_implicit_optional')) {
+    return `no_implicit_optional = true`;
+  } else if (line.startsWith('strict_optional')) {
+    return `strict_optional = true`;
+  } else if (line.startsWith('disallow_untyped_defs')) {
+    return `disallow_untyped_defs = true`;
+  } else if (line.startsWith('disallow_incomplete_defs')) {
+    return `disallow_incomplete_defs = true`;
+  } else if (line.startsWith('disallow_subclassing_any')) {
+    return `disallow_subclassing_any = true`;
+  } else if (line.startsWith('allow_untyped_globals')) {
+    return `allow_untyped_globals = false`;
+  } else if (line.startsWith('allow_redefinition')) {
+    return `allow_redefinition = false`;
+  } else if (line.includes('extend-select')) {
+    // START: RUFF
+    return 'extend-select = [' + `${AGGRESSIVE_SELECTS}` + ']';
+  } else if (line.startsWith('ignore = ')) {
+    return 'ignore = [' + `${AGGRESSIVE_IGNORES}` + ']';
+  } else if (line.startsWith('fixable')) {
+    return `fixable = ${AGGRESSIVE_FIXABLES}`;
+  } else if (line.startsWith('unfixable')) {
+    return `unfixable = ${AGGRESSIVE_UNFIXABLES}`;
+  } else if (line.startsWith('allow-star-arg-any')) {
+    return 'allow-star-arg-any = false';
+  } else if (line.startsWith('ignore-fully-untyped')) {
+    return 'ignore-fully-untyped = false';
+  } else if (line.includes('skip-string-normalization')) {
+    // START: BLACK
+    return 'skip-string-normalization = false';
+  } else if (line.includes('skip-magic-trailing-comma')) {
+    return 'skip-magic-trailing-comma = false';
+  } else if (line.includes('ignore=')) {
+    return 'ignore=';
+  } else if (line.startsWith('reportUntypedFunctionDecorator')) {
+    // START PYRIGHT
+    return 'reportUntypedFunctionDecorator = true';
+  } else if (line.startsWith('reportUntypedNamedTuple')) {
+    return 'reportUntypedNamedTuple = true';
+  } else if (line.startsWith('reportGeneralTypeIssues')) {
+    return 'reportGeneralTypeIssues = true';
+  } else if (line.startsWith('reportOptionalCall')) {
+    return 'reportOptionalCall = true';
+  } else if (line.startsWith('reportOptionalIterable')) {
+    return 'reportOptionalIterable = true';
+  } else if (line.startsWith('reportOptionalMemberAccess')) {
+    return 'reportOptionalMemberAccess = true';
+  } else if (line.startsWith('reportOptionalMemberAccess')) {
+    return 'reportOptionalMemberAccess = true';
+  } else if (line.startsWith('reportOptionalOperand')) {
+    return 'reportOptionalOperand = true';
+  } else if (line.startsWith('reportOptionalSubscript')) {
+    return 'reportOptionalSubscript = true';
+  } else if (line.startsWith('reportPrivateImportUsage')) {
+    return 'reportPrivateImportUsage = true';
+  } else if (line.startsWith('reportUnboundVariable')) {
+    return 'reportUnboundVariable = true';
+  } else {
+    return regularSettingsPyprojectToml(line);
+  }
+}
+
+function regularSettingsPyprojectToml(line: string) {
+  // LINE LENGTH
+  if (line.includes('line-length')) {
+    return `line-length = ${LINE_LENGTH}`;
+  } else if (line.includes('line_length')) {
+    return `line_length = ${LINE_LENGTH}`;
+  } else if (line.includes('max-line-length')) {
+    return `max-line-length = ${LINE_LENGTH}`;
+    // TARGET VERSION
+  } else if (line.startsWith("target-version = ['py")) {
+    return `target-version = ['py${PY_TARGET.replace('.', '')}']`;
+  } else if (line.startsWith('py_version = 3')) {
+    return `py_version = ${PY_TARGET.replace('.', '')}`;
+  } else if (line.startsWith('python_version = "3.')) {
+    return `python_version = "${PY_TARGET}"`;
+  } else if (line.startsWith('target-version = "py3')) {
+    return `target-version = "py${PY_TARGET.replace('.', '')}"`;
+  } else if (line.startsWith('pythonVersion = "3.')) {
+    return `pythonVersion = "${PY_TARGET}"`;
+  } else {
+    //EVERYTHING ELSE
+    return line;
+  }
+}
+
+function preCommitYamlContent(templateData: string[]) {
   let isFormatterLines = false;
 
-  return data.map((line: string) => {
+  return templateData.map((line: string) => {
     if (
       line.includes('nbqa-black') &&
       FORMATTING_TOOL.toLowerCase() === 'ruff'
