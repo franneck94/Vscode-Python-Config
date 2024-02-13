@@ -37,7 +37,7 @@ const IS_AGGRESSIVE_DEFAULT = false;
 const PY_TARGET_DEFAULT = '3.10';
 const FORMATTING_TOOL_DEFAULT = 'ruff';
 const RUFF_VERSION = 'v0.2.1';
-const BLACK_VERSION = '24.1.1';
+const BLACK_VERSION = '24.2.0';
 
 const AGGRESSIVE_SELECTS = `
     "C90",
@@ -73,7 +73,6 @@ const AGGRESSIVE_SELECTS = `
     "SLOT",
     "SIM",
     "TID",
-    "TCH",
     "INT",
     "ARG",
     "PTH",
@@ -91,6 +90,7 @@ const AGGRESSIVE_SELECTS = `
 const AGGRESSIVE_IGNORES = `
     "ANN101",
     "ANN102",
+    "ANN401",
     "I001",
     "NPY002",
     "INP001",
@@ -380,7 +380,10 @@ function savePreCommitFile(targetFilename: string, templateData: string[]) {
 }
 
 function saveRequirementsFile(targetFilename: string, templateData: string[]) {
-  if (!pathExists(targetFilename)) {
+  if (
+    !pathExists(targetFilename) ||
+    targetFilename.includes('requirements-dev.txt')
+  ) {
     const templateDataBuffer = Buffer.from(templateData.join('\r\n'), 'utf8');
     fs.writeFileSync(targetFilename, templateDataBuffer);
   } else {

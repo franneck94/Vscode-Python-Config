@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 11.3.0: Feb 13, 2024
+
+- **Info**: Updated versions
+- **Info**: Updated ruff exclude (aggressive mode)
+
 ## Version 11.2.0: Feb 13, 2024
 
 - **Info**: Merge requirements.txt
