@@ -211,6 +211,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
       const currentTomlData = toml.parse(currentPyprojectData.toString());
       const hasProjectDefinition = projectHasProjectDefinition(currentTomlData);
       if (!hasProjectDefinition) return;
+      const projectName = path.basename(WORKSPACE_FOLDER);
 
       const targetGithubDir = path.join(
         WORKSPACE_FOLDER,
@@ -241,7 +242,6 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
         const templateFilename = path.join(templatePath, filename);
         const targetFilename = path.join(WORKSPACE_FOLDER, filename);
 
-        const projectName = path.basename(WORKSPACE_FOLDER);
         saveProjectFiles(templateFilename, targetFilename, projectName);
       });
 
@@ -253,10 +253,9 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
       DOCS_FILES.forEach((filename: string) => {
         if (!WORKSPACE_FOLDER) return;
 
-        const templateFilename = path.join(templatePath, filename);
-        const targetFilename = path.join(WORKSPACE_FOLDER, filename);
+        const templateFilename = path.join(templatePath, 'docs', filename);
+        const targetFilename = path.join(targetDocsDir, filename);
 
-        const projectName = path.basename(WORKSPACE_FOLDER);
         saveProjectFiles(templateFilename, targetFilename, projectName);
       });
     },
