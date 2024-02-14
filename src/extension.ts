@@ -31,6 +31,15 @@ const ROOT_DIR_FILES_PYTHON = [
   'requirements-dev.txt',
   'requirements.txt',
 ];
+const GITHUB_FILES = [
+  'codeql-analysis.yaml',
+  'documentation.yaml',
+  'pre-commit.yaml',
+  'publish.yaml',
+  'test.yaml',
+];
+const ROOT_DIR_FILES_PROJECT = ['mkdocs.yaml', 'LICENSE', 'README.md'];
+const DOCS_FILES = ['api.md', 'index.md'];
 
 const LINE_LENGTH_DEFAULT = 120;
 const IS_AGGRESSIVE_DEFAULT = false;
@@ -195,10 +204,100 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
 
         saveRootdirGeneralFiles(templateFilename, targetFilename);
       });
+
+      const currentPyprojectData = fs.readFileSync(
+        path.join(WORKSPACE_FOLDER, 'pyproject.toml'),
+      );
+      const currentTomlData = toml.parse(currentPyprojectData.toString());
+      const hasProjectDefinition = projectHasProjectDefinition(currentTomlData);
+      if (!hasProjectDefinition) return;
+
+      const targetGithubDir = path.join(
+        WORKSPACE_FOLDER,
+        '.github',
+        'workflows',
+      );
+      if (!pathExists(targetGithubDir)) {
+        mkdirRecursive(targetGithubDir);
+      }
+
+      GITHUB_FILES.forEach((filename: string) => {
+        if (!WORKSPACE_FOLDER) return;
+
+        const templateFilename = path.join(
+          templatePath,
+          '.github',
+          'workflows',
+          filename,
+        );
+        const targetFilename = path.join(targetGithubDir, filename);
+
+        saveGithubFiles(templateFilename, targetFilename);
+      });
+
+      ROOT_DIR_FILES_PROJECT.forEach((filename: string) => {
+        if (!WORKSPACE_FOLDER) return;
+
+        const templateFilename = path.join(templatePath, filename);
+        const targetFilename = path.join(WORKSPACE_FOLDER, filename);
+
+        const projectName = path.basename(WORKSPACE_FOLDER);
+        saveProjectFiles(templateFilename, targetFilename, projectName);
+      });
+
+      const targetDocsDir = path.join(WORKSPACE_FOLDER, 'docs');
+      if (!pathExists(targetDocsDir)) {
+        mkdirRecursive(targetDocsDir);
+      }
+
+      DOCS_FILES.forEach((filename: string) => {
+        if (!WORKSPACE_FOLDER) return;
+
+        const templateFilename = path.join(templatePath, filename);
+        const targetFilename = path.join(WORKSPACE_FOLDER, filename);
+
+        const projectName = path.basename(WORKSPACE_FOLDER);
+        saveProjectFiles(templateFilename, targetFilename, projectName);
+      });
     },
   );
 
   context?.subscriptions.push(generateCCommandDisposable);
+}
+
+function saveProjectFiles(
+  templateFilename: string,
+  targetFilename: string,
+  projectName: string,
+) {
+  try {
+    let templateDataBuffer = fs.readFileSync(templateFilename);
+    const templateData = templateDataBuffer.toString().split('\n');
+
+    const modifiedData = templateData.map((line: string) => {
+      if (line.includes('PROJECTNAME')) {
+        return line.replace('PROJECTNAME', projectName);
+      } else {
+        return line;
+      }
+    });
+
+    templateDataBuffer = Buffer.from(modifiedData.join('\r\n'), 'utf8');
+    fs.writeFileSync(targetFilename, templateDataBuffer);
+  } catch (err) {
+    vscode.window.showErrorMessage(`Could not write file ${targetFilename}.`);
+    return;
+  }
+}
+
+function saveGithubFiles(templateFilename: string, targetFilename: string) {
+  try {
+    const templateDataBuffer = fs.readFileSync(templateFilename);
+    fs.writeFileSync(targetFilename, templateDataBuffer);
+  } catch (err) {
+    vscode.window.showErrorMessage(`Could not write file ${targetFilename}.`);
+    return;
+  }
 }
 
 function getFilepaths() {
