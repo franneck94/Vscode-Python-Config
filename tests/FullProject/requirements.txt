@@ -1,2 +1,4 @@
 # Runtime requirements
 numpy>=1.21.6
+
+-r requirements-dev.txt
