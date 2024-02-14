@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 11.4.0: Feb 14, 2024
+
+- **Info**: Added Project related files (github workflows, LICENSE etc.) for workspaces with python project definition in pyproject.toml file
+
 ## Version 11.3.0: Feb 13, 2024
 
 - **Info**: Updated versions
