@@ -258,20 +258,20 @@ function hasAlreadySphinxDoc(targetDocsDir: string) {
 }
 
 function getProjectName(workspace: string) {
-  if (pathExists(path.join(workspace, 'pyproject.toml'))) {
-    const currentPyprojectData = fs.readFileSync(
-      path.join(workspace, 'pyproject.toml'),
-    );
-    const currentTomlData = toml.parse(currentPyprojectData.toString());
-    const hasProjectDefinition = projectHasProjectDefinition(currentTomlData);
-    if (hasProjectDefinition) return path.basename(workspace);
-  } else if (pathExists(path.join(workspace, 'setup.py'))) {
+  if (pathExists(path.join(workspace, 'setup.py'))) {
     return getProjectNameFromSetup(workspace, path.join(workspace, 'setup.py'));
   } else if (pathExists(path.join(workspace, 'setup.cfg'))) {
     return getProjectNameFromSetup(
       workspace,
       path.join(workspace, 'setup.cfg'),
     );
+  } else if (pathExists(path.join(workspace, 'pyproject.toml'))) {
+    const currentPyprojectData = fs.readFileSync(
+      path.join(workspace, 'pyproject.toml'),
+    );
+    const currentTomlData = toml.parse(currentPyprojectData.toString());
+    const hasProjectDefinition = projectHasProjectDefinition(currentTomlData);
+    if (hasProjectDefinition) return path.basename(workspace);
   }
 
   return path.basename(workspace);
@@ -281,7 +281,11 @@ function getProjectNameFromSetup(workspace: string, filename: string) {
   const setupBuffer = fs.readFileSync(filename);
   const setupData = setupBuffer.toString().split('\n');
   const projectLine = setupData.find((line: string) => line.includes('name='));
-  if (projectLine !== undefined) return projectLine;
+  if (projectLine !== undefined)
+    return projectLine
+      .slice(projectLine.indexOf('=') + 1)
+      .replaceAll('"', '')
+      .replaceAll(',', '');
   else return path.basename(workspace);
 }
 
@@ -291,6 +295,8 @@ function saveProjectFiles(
   projectName: string,
 ) {
   try {
+    if (pathExists(targetFilename)) return;
+
     let templateDataBuffer = fs.readFileSync(templateFilename);
     const templateData = templateDataBuffer.toString().split('\n');
 
@@ -312,6 +318,7 @@ function saveProjectFiles(
 
 function saveGithubFiles(templateFilename: string, targetFilename: string) {
   try {
+    if (pathExists(targetFilename)) return;
     const templateDataBuffer = fs.readFileSync(templateFilename);
     fs.writeFileSync(targetFilename, templateDataBuffer);
   } catch (err) {

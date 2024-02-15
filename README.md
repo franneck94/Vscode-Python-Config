@@ -8,18 +8,33 @@ Files in the workspace's .vscode folder:
 - launch.json: Configurations for debugging your python projects
 - tasks.json: Tasks to execute your python projects
 
-Python-specific files in the root directory:
+Python-specific files in the root directory for any workspace:
 
 - .pre-commit-config.yaml: Tools to run on every git commit
 - pyproject.toml: General settings for the linters and formatters
 - requirements-dev.txt: Python packages to install for developers (linter, testing etc.)
 - requirements.txt: Python packages to install for users (starts as an empty file)
 
-General IDE Files in the root directory (files are **not** overridden if already existing):
+General IDE Files in the root directory (*):
 
 - .editorconfig: Standard file settings (line-feed, insert new-line, etc.)
 - .gitattributes: Gives attributes to pathnames
 - .gitingore: Specifies intentionally untracked files to ignore
+
+Files for python projects (has a project defined in pyproject.toml or setup.py/cfg) (*):
+
+- .github/workflows/codeql-analysis.yaml
+- .github/workflows/documentation.yaml
+- .github/workflows/pre-commit.yaml
+- .github/workflows/publish.yaml
+- .github/workflows/test.yaml
+- docs/index.md
+- docs/api.md
+- LICENSE
+- mkdocs.yaml
+- README.md
+
+(*): These files are not overridden, if already existing.
 
 ## How to use
 

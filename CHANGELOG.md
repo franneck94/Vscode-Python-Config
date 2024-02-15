@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 11.5.0: Feb 15, 2024
+
+- **Info**: Get project name from pyproject.toml
+- **Info**: Don't overwrite project specific files
+
 ## Version 11.4.0: Feb 14, 2024
 
 - **Info**: Added Project related files (github workflows, LICENSE etc.) for workspaces with python project definition in pyproject.toml file
