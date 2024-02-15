@@ -5,6 +5,7 @@ import * as vscode from 'vscode';
 import * as toml from '@iarna/toml';
 
 import {
+  filesInDir,
   mkdirRecursive,
   pathExists,
   readJsonFile,
@@ -170,6 +171,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
         vscode.window.showErrorMessage('No workspace opened!');
         return;
       }
+      const workspace = WORKSPACE_FOLDER;
 
       const { templatePath, vscodePath } = getFilepaths();
       if (!templatePath || !vscodePath) return;
@@ -188,43 +190,27 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
       });
 
       ROOT_DIR_FILES_PYTHON.forEach((filename) => {
-        if (!WORKSPACE_FOLDER) return;
-
-        const targetFilename = path.join(WORKSPACE_FOLDER, filename);
+        const targetFilename = path.join(workspace, filename);
         const templateFilename = path.join(templatePath, filename);
 
         saveRootdirPythonFiles(templateFilename, targetFilename, filename);
       });
 
       ROOT_DIR_FILES_GENERAL.forEach((filename) => {
-        if (!WORKSPACE_FOLDER) return;
-
-        const targetFilename = path.join(WORKSPACE_FOLDER, filename);
+        const targetFilename = path.join(workspace, filename);
         const templateFilename = path.join(templatePath, filename);
 
         saveRootdirGeneralFiles(templateFilename, targetFilename);
       });
 
-      const currentPyprojectData = fs.readFileSync(
-        path.join(WORKSPACE_FOLDER, 'pyproject.toml'),
-      );
-      const currentTomlData = toml.parse(currentPyprojectData.toString());
-      const hasProjectDefinition = projectHasProjectDefinition(currentTomlData);
-      if (!hasProjectDefinition) return;
-      const projectName = path.basename(WORKSPACE_FOLDER);
+      const projectName = getProjectName(workspace);
 
-      const targetGithubDir = path.join(
-        WORKSPACE_FOLDER,
-        '.github',
-        'workflows',
-      );
+      const targetGithubDir = path.join(workspace, '.github', 'workflows');
       if (!pathExists(targetGithubDir)) {
         mkdirRecursive(targetGithubDir);
       }
 
       GITHUB_FILES.forEach((filename: string) => {
-        if (!WORKSPACE_FOLDER) return;
-
         const templateFilename = path.join(
           templatePath,
           '.github',
@@ -237,24 +223,20 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
       });
 
       ROOT_DIR_FILES_PROJECT.forEach((filename: string) => {
-        if (!WORKSPACE_FOLDER) return;
-
         const templateFilename = path.join(templatePath, filename);
-        const targetFilename = path.join(WORKSPACE_FOLDER, filename);
+        const targetFilename = path.join(workspace, filename);
 
         saveProjectFiles(templateFilename, targetFilename, projectName);
       });
 
-      const targetDocsDir = path.join(WORKSPACE_FOLDER, 'docs');
-      if (pathExists(path.join(targetDocsDir, 'sphinx'))) return;
+      const targetDocsDir = path.join(workspace, 'docs');
+      if (hasAlreadySphinxDoc(targetDocsDir)) return;
 
       if (!pathExists(targetDocsDir)) {
         mkdirRecursive(targetDocsDir);
       }
 
       DOCS_FILES.forEach((filename: string) => {
-        if (!WORKSPACE_FOLDER) return;
-
         const templateFilename = path.join(templatePath, 'docs', filename);
         const targetFilename = path.join(targetDocsDir, filename);
 
@@ -264,6 +246,43 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
   );
 
   context?.subscriptions.push(generateCCommandDisposable);
+}
+
+function hasAlreadySphinxDoc(targetDocsDir: string) {
+  const hasSphinxDir = pathExists(path.join(targetDocsDir, 'sphinx'));
+  const currentDocFiles = filesInDir(targetDocsDir);
+  return (
+    hasSphinxDir ||
+    currentDocFiles.some((file: string) => file.endsWith('.rst'))
+  );
+}
+
+function getProjectName(workspace: string) {
+  if (pathExists(path.join(workspace, 'pyproject.toml'))) {
+    const currentPyprojectData = fs.readFileSync(
+      path.join(workspace, 'pyproject.toml'),
+    );
+    const currentTomlData = toml.parse(currentPyprojectData.toString());
+    const hasProjectDefinition = projectHasProjectDefinition(currentTomlData);
+    if (hasProjectDefinition) return path.basename(workspace);
+  } else if (pathExists(path.join(workspace, 'setup.py'))) {
+    return getProjectNameFromSetup(workspace, path.join(workspace, 'setup.py'));
+  } else if (pathExists(path.join(workspace, 'setup.cfg'))) {
+    return getProjectNameFromSetup(
+      workspace,
+      path.join(workspace, 'setup.cfg'),
+    );
+  }
+
+  return path.basename(workspace);
+}
+
+function getProjectNameFromSetup(workspace: string, filename: string) {
+  const setupBuffer = fs.readFileSync(filename);
+  const setupData = setupBuffer.toString().split('\n');
+  const projectLine = setupData.find((line: string) => line.includes('name='));
+  if (projectLine !== undefined) return projectLine;
+  else return path.basename(workspace);
 }
 
 function saveProjectFiles(

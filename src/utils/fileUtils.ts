@@ -58,3 +58,22 @@ export function writeJsonFile(outputFilePath: string, jsonContent: any) {
     return;
   }
 }
+
+export function readDir(dir: string | fs.PathLike) {
+  try {
+    return fs.readdirSync(dir, { withFileTypes: true });
+  } catch (err) {}
+}
+
+export function filesInDir(dir: string) {
+  const fileDirents = readDir(dir);
+
+  if (!fileDirents) return [];
+
+  const hasSpace = dir.includes(' ');
+  const files = fileDirents
+    .filter((file) => file.isFile())
+    .map((file) => (hasSpace ? file.name : path.join(dir, file.name)));
+
+  return files;
+}
