@@ -246,6 +246,8 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
       });
 
       const targetDocsDir = path.join(WORKSPACE_FOLDER, 'docs');
+      if (pathExists(path.join(targetDocsDir, 'sphinx'))) return;
+
       if (!pathExists(targetDocsDir)) {
         mkdirRecursive(targetDocsDir);
       }
