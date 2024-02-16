@@ -222,15 +222,28 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
         saveGithubFiles(templateFilename, targetFilename);
       });
 
+      const hasReadmeRst = pathExists(path.join(workspace, 'README.rst'));
+      let targetDocsDir = path.join(workspace, 'docs');
+      let hasSphinxDocs = hasAlreadySphinxDoc(targetDocsDir);
+      if (!hasSphinxDocs) {
+        targetDocsDir = path.join(workspace, 'doc');
+        hasSphinxDocs = hasAlreadySphinxDoc(targetDocsDir);
+      }
+
       ROOT_DIR_FILES_PROJECT.forEach((filename: string) => {
         const templateFilename = path.join(templatePath, filename);
         const targetFilename = path.join(workspace, filename);
 
-        saveProjectFiles(templateFilename, targetFilename, projectName);
+        if (
+          (filename === 'README.md' && !hasReadmeRst) ||
+          (filename === 'mkdocs.yaml' && !hasSphinxDocs) ||
+          (filename !== 'README.md' && filename !== 'mkdocs.yaml')
+        ) {
+          saveProjectFiles(templateFilename, targetFilename, projectName);
+        }
       });
 
-      const targetDocsDir = path.join(workspace, 'docs');
-      if (hasAlreadySphinxDoc(targetDocsDir)) return;
+      if (hasSphinxDocs) return;
 
       if (!pathExists(targetDocsDir)) {
         mkdirRecursive(targetDocsDir);

@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 11.6.0: Feb 16, 2024
+
+- **Info**: Don't create mkdocs.yaml if there is a sphinx project
+- **Info**: Don't create README.md if there is a README.rst
+
 ## Version 11.5.0: Feb 15, 2024
 
 - **Info**: Get project name from pyproject.toml
