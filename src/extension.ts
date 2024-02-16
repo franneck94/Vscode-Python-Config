@@ -224,11 +224,10 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
       });
 
       const hasReadmeRst = pathExists(path.join(workspace, 'README.rst'));
-      let targetDocsDir = path.join(workspace, 'docs');
+      const targetDocsDir = path.join(workspace, 'docs');
       let hasSphinxDocs = hasAlreadySphinxDoc(targetDocsDir);
       if (!hasSphinxDocs) {
-        targetDocsDir = path.join(workspace, 'doc');
-        hasSphinxDocs = hasAlreadySphinxDoc(targetDocsDir);
+        hasSphinxDocs = hasAlreadySphinxDoc(path.join(workspace, 'doc'));
       }
 
       ROOT_DIR_FILES_PROJECT.forEach((filename: string) => {
@@ -244,7 +243,9 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
         }
       });
 
-      if (hasSphinxDocs) return;
+      const docDir = path.join(workspace, 'doc');
+      const hasDocDir = pathExists(docDir);
+      if (hasSphinxDocs || hasDocDir) return;
 
       if (!pathExists(targetDocsDir)) {
         mkdirRecursive(targetDocsDir);

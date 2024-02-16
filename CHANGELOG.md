@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 11.8.0: Feb 16, 2024
+
+- **Info**: Bugfix for project name logic
+
 ## Version 11.7.0: Feb 16, 2024
 
 - **Info**: Bugfix for project name logic
