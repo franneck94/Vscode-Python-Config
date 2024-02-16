@@ -204,6 +204,7 @@ function initGeneratePythonCommandDisposable(context: vscode.ExtensionContext) {
       });
 
       const projectName = getProjectName(workspace);
+      if (projectName === '') return;
 
       const targetGithubDir = path.join(workspace, '.github', 'workflows');
       if (!pathExists(targetGithubDir)) {
@@ -287,7 +288,7 @@ function getProjectName(workspace: string) {
     if (hasProjectDefinition) return path.basename(workspace);
   }
 
-  return path.basename(workspace);
+  return '';
 }
 
 function getProjectNameFromSetup(workspace: string, filename: string) {
