@@ -5,16 +5,16 @@ twine>=5.0.0
 setuptools>=69.1.0
 
 # Jupyter
-ipython>=8.21.0
+ipython>=8.18.1
 ipykernel>=6.29.2
 
 # Linting/Formatting
-ruff>=0.2.1
+ruff>=0.2.2
 black>=24.2.0
 isort>=5.13.2
 
 # Tooling
-pre-commit>=3.6.1
+pre-commit>=3.6.2
 
 # Type Checker
 mypy>=1.8.0
@@ -22,7 +22,7 @@ mypy-extensions>=1.0.0
 pyright>=1.1.350
 
 # Testing
-pytest>=8.0.0
+pytest>=8.0.1
 pytest-cov>=4.1.0
 pytest-benchmark>=4.0.0
 codecov>=2.1.13

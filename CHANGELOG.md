@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 11.9.0: Feb 19, 2024
+
+- **Info**: Bumped versions
+
 ## Version 11.8.0: Feb 16, 2024
 
 - **Info**: Bugfix for docs/doc dir
