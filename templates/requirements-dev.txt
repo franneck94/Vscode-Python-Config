@@ -1,15 +1,15 @@
 # Packaging
 # python -m pip install -U pip
-build>=1.0.3
+build>=1.1.1
 twine>=5.0.0
-setuptools>=69.1.0
+setuptools>=69.1.1
 
 # Jupyter
 ipython>=8.18.1
-ipykernel>=6.29.2
+ipykernel>=6.29.3
 
 # Linting/Formatting
-ruff>=0.2.2
+ruff>=0.3.0
 black>=24.2.0
 isort>=5.13.2
 
@@ -19,10 +19,10 @@ pre-commit>=3.6.2
 # Type Checker
 mypy>=1.8.0
 mypy-extensions>=1.0.0
-pyright>=1.1.350
+pyright>=1.1.352
 
 # Testing
-pytest>=8.0.1
+pytest>=8.0.2
 pytest-cov>=4.1.0
 pytest-benchmark>=4.0.0
 codecov>=2.1.13
@@ -30,7 +30,7 @@ tox>=4.12.1
 
 # Documentation
 mkdocs>=1.5.3
-mkdocstrings>=0.24.0
-mkdocs-material>=9.5.9
+mkdocstrings>=0.24.1
+mkdocs-material>=9.5.12
 mkdocstrings-python>=1.8.0
 Pygments>=2.17.2
