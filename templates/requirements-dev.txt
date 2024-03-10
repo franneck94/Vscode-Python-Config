@@ -9,28 +9,29 @@ ipython>=8.18.1
 ipykernel>=6.29.3
 
 # Linting/Formatting
-ruff>=0.3.0
+ruff>=0.3.2
 black>=24.2.0
 isort>=5.13.2
 
 # Tooling
 pre-commit>=3.6.2
+nbQA==1.8.4
 
 # Type Checker
-mypy>=1.8.0
+mypy>=1.9.0
 mypy-extensions>=1.0.0
-pyright>=1.1.352
+pyright>=1.1.353
 
 # Testing
-pytest>=8.0.2
+pytest>=8.1.1
 pytest-cov>=4.1.0
 pytest-benchmark>=4.0.0
 codecov>=2.1.13
-tox>=4.12.1
+tox>=4.14.1
 
 # Documentation
 mkdocs>=1.5.3
 mkdocstrings>=0.24.1
-mkdocs-material>=9.5.12
+mkdocs-material>=9.5.13
 mkdocstrings-python>=1.8.0
 Pygments>=2.17.2
