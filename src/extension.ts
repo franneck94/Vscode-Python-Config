@@ -5,11 +5,11 @@ import * as vscode from 'vscode';
 import * as toml from '@iarna/toml';
 
 import {
-  filesInDir,
-  mkdirRecursive,
-  pathExists,
-  readJsonFile,
-  writeJsonFile,
+	filesInDir,
+	mkdirRecursive,
+	pathExists,
+	readJsonFile,
+	writeJsonFile,
 } from './utils/fileUtils';
 import { getGlobalSetting } from './utils/settings';
 import { disposeItem } from './utils/vscodeUtils';
@@ -46,8 +46,8 @@ const LINE_LENGTH_DEFAULT = 120;
 const IS_AGGRESSIVE_DEFAULT = false;
 const PY_TARGET_DEFAULT = '3.10';
 const FORMATTING_TOOL_DEFAULT = 'ruff';
-const RUFF_VERSION = 'v0.3.2';
-const BLACK_VERSION = '24.2.0';
+const RUFF_VERSION = 'v0.3.5';
+const BLACK_VERSION = '24.3.0';
 
 const AGGRESSIVE_SELECTS = `
     "C90",
