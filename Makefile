@@ -13,3 +13,9 @@ clean:
 	rm -f tests/SimpleRepo/.mypy-cache/
 
 .phony: clean
+
+VERS_REGEX = 's/(\w+(-*\w*)?)-([0-9]+\.[0-9]+\.[0-9]+)/\n\1>=\3/g'
+GREP_TEXT = '^Successfully installed'
+
+bump:
+	cd templates && pip install -U -r requirements.txt | grep $(GREP_TEXT) | sed -E $(VERS_REGEX) > bump.txt

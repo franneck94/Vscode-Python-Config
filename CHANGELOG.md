@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 11.16.0: May 27, 2024
+
+- **Info**: Bumped versions
+- **Info**: Added bump script for easier updates of this extension
+
 ## Version 11.15.0: May 18, 2024
 
 - **Info**: Bumped versions
