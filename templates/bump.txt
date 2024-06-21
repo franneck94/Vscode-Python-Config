@@ -1,3 +1,9 @@
 Successfully installed 
-mkdocstrings-python>=1.10.3 
-pyright>=1.1.364
+griffe>=0.47.0 
+mkdocs-material>=9.5.27 
+mkdocstrings-python>=1.10.5 
+pyright>=1.1.368 
+pytest>=8.2.2 
+ruff>=0.4.10 
+setuptools>=70.1.0 
+tox>=4.15.1

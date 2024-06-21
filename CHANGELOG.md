@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 11.17.0: Jun 21, 2024
+
+- **Info**: Bumped versions
+
 ## Version 11.16.0: May 27, 2024
 
 - **Info**: Bumped versions
