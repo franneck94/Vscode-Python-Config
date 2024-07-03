@@ -157,7 +157,7 @@ def test_mul_raises(
 ) -> None:
     """Test mul raises."""
     with pytest.raises(TypeError):
-        rhs * lhs  # pyright: ignore reportUnusedExpression
+        rhs * lhs
 
 
 @pytest.mark.parametrize(
@@ -186,7 +186,7 @@ def test_div_raises(
 ) -> None:
     """Test div raises."""
     with pytest.raises(TypeError):
-        lhs / rhs  # pyright: ignore reportUnusedExpression
+        lhs / rhs
 
 
 @pytest.mark.parametrize(
@@ -202,11 +202,11 @@ def test_operators_raises(
 ) -> None:
     """Test operators raises."""
     with pytest.raises(TypeError):
-        rhs < lhs  # pyright: ignore reportUnusedExpression
+        rhs < lhs
     with pytest.raises(TypeError):
-        rhs + lhs  # pyright: ignore reportUnusedExpression
+        rhs + lhs
     with pytest.raises(TypeError):
-        rhs - lhs  # pyright: ignore reportUnusedExpression
+        rhs - lhs
 
 
 @pytest.mark.parametrize(

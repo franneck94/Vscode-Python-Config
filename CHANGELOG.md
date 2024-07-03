@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 12.0.0: Jul 03, 2024
+
+- **Info**: Removed pyright, i dont see real benefits of using it
+- **Info**: Replaced ruff's TRIO by ASYNC1
+
 ## Version 11.17.0: Jun 21, 2024
 
 - **Info**: Bumped versions

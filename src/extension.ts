@@ -5,11 +5,11 @@ import * as vscode from 'vscode';
 import * as toml from '@iarna/toml';
 
 import {
-  filesInDir,
-  mkdirRecursive,
-  pathExists,
-  readJsonFile,
-  writeJsonFile,
+	filesInDir,
+	mkdirRecursive,
+	pathExists,
+	readJsonFile,
+	writeJsonFile,
 } from './utils/fileUtils';
 import { getGlobalSetting } from './utils/settings';
 import { disposeItem } from './utils/vscodeUtils';
@@ -57,7 +57,6 @@ const AGGRESSIVE_SELECTS = `
     "YTT",
     "ANN",
     "ASYNC",
-    "TRIO",
     "S",
     "BLE",
     "B",
@@ -615,29 +614,6 @@ function aggressiveSettingsPyprojectToml(line: string) {
     return 'skip-magic-trailing-comma = false';
   } else if (line.includes('ignore=')) {
     return 'ignore=';
-  } else if (line.startsWith('reportUntypedFunctionDecorator')) {
-    // START PYRIGHT
-    return 'reportUntypedFunctionDecorator = true';
-  } else if (line.startsWith('reportUntypedNamedTuple')) {
-    return 'reportUntypedNamedTuple = true';
-  } else if (line.startsWith('reportGeneralTypeIssues')) {
-    return 'reportGeneralTypeIssues = true';
-  } else if (line.startsWith('reportOptionalCall')) {
-    return 'reportOptionalCall = true';
-  } else if (line.startsWith('reportOptionalIterable')) {
-    return 'reportOptionalIterable = true';
-  } else if (line.startsWith('reportOptionalMemberAccess')) {
-    return 'reportOptionalMemberAccess = true';
-  } else if (line.startsWith('reportOptionalMemberAccess')) {
-    return 'reportOptionalMemberAccess = true';
-  } else if (line.startsWith('reportOptionalOperand')) {
-    return 'reportOptionalOperand = true';
-  } else if (line.startsWith('reportOptionalSubscript')) {
-    return 'reportOptionalSubscript = true';
-  } else if (line.startsWith('reportPrivateImportUsage')) {
-    return 'reportPrivateImportUsage = true';
-  } else if (line.startsWith('reportUnboundVariable')) {
-    return 'reportUnboundVariable = true';
   } else {
     return regularSettingsPyprojectToml(line);
   }
@@ -720,7 +696,7 @@ function mergeTomlFiles(
   templateTomlData: toml.JsonMap,
 ) {
   const mergedTomlData = currentTomlData;
-  const mergeKeys = ['black', 'isort', 'ruff', 'mypy', 'pyright'];
+  const mergeKeys = ['black', 'isort', 'ruff', 'mypy'];
 
   for (const mergeKey of mergeKeys) {
     if (

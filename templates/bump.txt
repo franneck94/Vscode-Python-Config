@@ -1,9 +1,14 @@
-Successfully installed 
-griffe>=0.47.0 
-mkdocs-material>=9.5.27 
-mkdocstrings-python>=1.10.5 
-pyright>=1.1.368 
-pytest>=8.2.2 
-ruff>=0.4.10 
-setuptools>=70.1.0 
-tox>=4.15.1
+Successfully installed
+cachetools>=5.3.3
+filelock>=3.15.4
+ipykernel>=6.29.5
+mkdocs-material>=9.5.28
+mypy>=1.10.1
+packaging-24.1
+platformdirs>=4.2.2
+pyproject-api>=1.7.1
+ruff>=0.5.0
+setuptools>=70.2.0
+tox>=4.16.0
+twine>=5.1.1
+virtualenv>=20.26.3
