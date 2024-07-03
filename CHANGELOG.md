@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 12.1.0: Jul 03, 2024
+
+- **Info**: Added "I001" ignore for ruff in non-aggressive settings
+
 ## Version 12.0.0: Jul 03, 2024
 
 - **Info**: Removed pyright, i dont see real benefits of using it
