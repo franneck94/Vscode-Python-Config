@@ -1,5 +1,9 @@
 # Python Config Change Log
 
+## Version 12.2.0: Jul 05, 2024
+
+- **Info**: Removed vscode theme setting
+
 ## Version 12.1.0: Jul 03, 2024
 
 - **Info**: Added "I001" ignore for ruff in non-aggressive settings

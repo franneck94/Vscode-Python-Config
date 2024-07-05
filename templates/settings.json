@@ -45,7 +45,6 @@
         "*.md": "vscode.markdown.preview.editor",
         "*.svg": "svgPreviewer.customEditor"
     },
-    "workbench.colorTheme": "Default Dark+",
     // Git
     "git.enableSmartCommit": true,
     "git.autofetch": true,
