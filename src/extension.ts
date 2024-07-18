@@ -369,6 +369,12 @@ function saveVscodeFiles(
         templateData['editor.rulers'] = [120];
       }
 
+      if (IS_AGGRESSIVE) {
+        templateData['[python]']['editor.codeActionsOnSave']['source.organizeImports'] = true
+      } else {
+        templateData['[python]']['editor.codeActionsOnSave']['source.organizeImports'] = false
+      }
+
       if (FORMATTING_TOOL.toLowerCase() === 'ruff') {
         templateData['[python]']['editor.defaultFormatter'] =
           'charliermarsh.ruff';
