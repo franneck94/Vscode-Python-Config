@@ -1,5 +1,10 @@
 # Python Config Change Log
 
+## Version 12.3.0: Jul 19, 2024
+
+- **Info**: Added sort imports an save in aggressive mode (currently isort only, and not ruff)
+- **Info**: Bumped versions
+
 ## Version 12.2.0: Jul 05, 2024
 
 - **Info**: Removed vscode theme setting
@@ -10,7 +15,7 @@
 
 ## Version 12.0.0: Jul 03, 2024
 
-- **Info**: Removed pyright, i dont see real benefits of using it
+- **Info**: Removed pyright
 - **Info**: Replaced ruff's TRIO by ASYNC1
 
 ## Version 11.17.0: Jun 21, 2024
@@ -118,12 +123,12 @@
 ## Version 9.1.0: Feb 4, 2024
 
 - **Info**: Set ruff's fixable to "ALL" instead of a long list
-- **Info**: Added some *tool.ruff.lint.pylint* settings
+- **Info**: Added some _tool.ruff.lint.pylint_ settings
 
 ## Version 9.0.0: Feb 3, 2024
 
 - **Info**: Updated launch.json target from "python" to "debugpy"
-- **Info**: Added creation of *requirements.txt* with recursive *requirements-dev.txt*, but only if *requirements.txt* is not already present
+- **Info**: Added creation of _requirements.txt_ with recursive _requirements-dev.txt_, but only if _requirements.txt_ is not already present
 - **Info**: Updated to ruff 0.2.0, also updated ruff toml setting names
 
 ## Version 8.4.0: Jan 30, 2024

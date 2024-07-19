@@ -5,11 +5,11 @@ import * as vscode from 'vscode';
 import * as toml from '@iarna/toml';
 
 import {
-	filesInDir,
-	mkdirRecursive,
-	pathExists,
-	readJsonFile,
-	writeJsonFile,
+  filesInDir,
+  mkdirRecursive,
+  pathExists,
+  readJsonFile,
+  writeJsonFile,
 } from './utils/fileUtils';
 import { getGlobalSetting } from './utils/settings';
 import { disposeItem } from './utils/vscodeUtils';
@@ -370,9 +370,13 @@ function saveVscodeFiles(
       }
 
       if (IS_AGGRESSIVE) {
-        templateData['[python]']['editor.codeActionsOnSave']['source.organizeImports'] = true
+        templateData['[python]']['editor.codeActionsOnSave'][
+          'source.organizeImports'
+        ] = 'explicit';
       } else {
-        templateData['[python]']['editor.codeActionsOnSave']['source.organizeImports'] = false
+        templateData['[python]']['editor.codeActionsOnSave'][
+          'source.organizeImports'
+        ] = 'never';
       }
 
       if (FORMATTING_TOOL.toLowerCase() === 'ruff') {

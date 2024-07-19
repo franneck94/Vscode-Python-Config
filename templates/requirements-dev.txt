@@ -2,7 +2,7 @@
 # python -m pip install -U pip
 build>=1.2.1
 twine>=5.1.0
-setuptools>=70.2.0
+setuptools>=71.0.3
 virtualenv>=20.26.3
 
 # Jupyter
@@ -10,13 +10,13 @@ ipython>=8.18.1
 ipykernel>=6.29.5
 
 # Linting/Formatting
-ruff>=0.5.0
+ruff>=0.5.3
 black>=24.4.2
 isort>=5.13.2
 
 # Tooling
 pre-commit>=3.7.1
-nbqa>=1.8.4
+nbqa>=1.8.5
 
 # Type Checker
 mypy>=1.10.1
@@ -31,6 +31,6 @@ codecov>=2.1.13
 # Documentation
 mkdocs>=1.6.0
 mkdocstrings>=0.25.1
-mkdocs-material>=9.5.27
+mkdocs-material>=9.5.29
 mkdocstrings-python>=1.10.5
 Pygments>=2.18.0
