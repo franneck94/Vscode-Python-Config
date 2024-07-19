@@ -130,7 +130,10 @@
     "[python]": {
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnType": false
+        "editor.formatOnType": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": false
+        }
     },
     "python.languageServer": "Pylance",
     "python.analysis.addImport.exactMatchOnly": true,
