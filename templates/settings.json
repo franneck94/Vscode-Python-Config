@@ -3,17 +3,8 @@
     "editor.tabSize": 4,
     "editor.rulers": [120],
     "editor.renderWhitespace": "trailing",
-    "editor.suggestSelection": "first",
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.stickyScroll.enabled": false,
-    "editor.bracketPairColorization.enabled": false,
-    "editor.cursorSmoothCaretAnimation": "on",
-    "editor.suggest.preview": true,
     // Terminal
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
-    // Debug
-    "debug.onTaskErrors": "debugAnyway",
     // Explorer
     "explorer.compactFolders": false,
     "explorer.confirmDragAndDrop": false,
@@ -21,25 +12,13 @@
     "explorer.copyRelativePathSeparator": "/",
     // Files
     "files.autoSave": "onFocusChange",
-    "files.exclude": {
-        "node_modules/**/*": true,
-        "**/.classpath": true,
-        "**/.project": true,
-        "**/.settings": true,
-        "**/.factorypath": true
-    },
     "files.associations": {
-        "*.pyx": "cython",
-        ".clang*": "yaml",
-        "*.gpj": "jsonc",
-        "*.gvw": "jsonc",
-        "*.hpp.in": "cpp"
+        "*.pyx": "cython"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     // workbench
-    "workbench.startupEditor": "none",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook",
         "*.md": "vscode.markdown.preview.editor",
@@ -50,41 +29,20 @@
     "git.autofetch": true,
     "git.confirmSync": false,
     "git.openRepositoryInParentFolders": "always",
-    // Telemetry and Security
-    "partialDiff.enableTelemetry": false,
-    // Prettier
-    "prettier.tabWidth": 4,
-    "prettier.singleQuote": true,
-    "prettier.jsxSingleQuote": true,
-    "prettier.trailingComma": "all",
-    "prettier.useEditorConfig": true,
-    "prettier.bracketSpacing": false,
-    // Markdown
+    // Different languages
     "markdown.validate.enabled": true,
     "[markdown]": {
         "files.trimTrailingWhitespace": false,
-        "editor.formatOnSave": false,
+        "editor.wordWrapColumn": 80,
+        "editor.wordWrap": "wordWrapColumn",
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
-        "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 80
-    },
-    // Different languages
-    "[yaml]": {
-        "editor.formatOnSave": false,
-        "editor.defaultFormatter": "redhat.vscode-yaml",
-        "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 80
-    },
-    "[json]": {
-        "editor.formatOnSave": false,
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[jsonc]": {
         "editor.formatOnSave": false
     },
-    "[plaintext]": {
+    "[yaml]": {
         "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 120
+        "editor.wordWrapColumn": 80,
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.formatOnSave": false
     },
     "[toml]": {
         "editor.wordWrap": "wordWrapColumn",
@@ -122,7 +80,6 @@
         "**/html"
     ],
     "svg.preview.autoOpen": true,
-    "remote.WSL.fileWatcher.polling": true,
     "errorLens.delay": 1000,
     "errorLens.enabledDiagnosticLevels": ["error", "warning"],
     "errorLens.enabled": false,
@@ -136,7 +93,6 @@
         }
     },
     "python.languageServer": "Pylance",
-    "python.analysis.addImport.exactMatchOnly": true,
     "python.analysis.autoImportCompletions": false,
     "python.analysis.completeFunctionParens": false,
     "python.analysis.autoFormatStrings": true,

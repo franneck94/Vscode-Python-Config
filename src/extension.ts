@@ -46,66 +46,18 @@ const LINE_LENGTH_DEFAULT = 120;
 const IS_AGGRESSIVE_DEFAULT = false;
 const PY_TARGET_DEFAULT = '3.10';
 const FORMATTING_TOOL_DEFAULT = 'ruff';
-const RUFF_VERSION = 'v0.4.10';
-const BLACK_VERSION = '24.4.2';
+const RUFF_VERSION = 'v0.6.2';
+const BLACK_VERSION = '24.8.0';
 
 const AGGRESSIVE_SELECTS = `
-    "C90",
-    "I",
-    "N",
-    "UP",
-    "YTT",
-    "ANN",
-    "ASYNC",
-    "S",
-    "BLE",
-    "B",
-    "A",
-    "COM",
-    "C4",
-    "DTZ",
-    "T10",
-    "DJ",
-    "EM",
-    "EXE",
-    "FA",
-    "ISC",
-    "ICN",
-    "G",
-    "INP",
-    "PIE",
-    "PYI",
-    "PT",
-    "Q",
-    "RSE",
-    "RET",
-    "SLOT",
-    "SIM",
-    "TID",
-    "INT",
-    "ARG",
-    "PTH",
-    "PD",
-    "PL",
-    "TRY",
-    "FLY",
-    "NPY",
-    "AIR",
-    "PERF",
-    "FURB",
-    "LOG",
-    "RUF",
+    "ALL"
 `;
 const AGGRESSIVE_IGNORES = `
-    "ANN101",
-    "ANN102",
-    "ANN401",
-    "I001",
-    "NPY002",
-    "INP001",
-    "TRY003",
-    "ISC001",
-    "COM812",
+    "D",
+    "CPY",
+    "T20",
+    "DOC",
+    "PGH",
 `;
 const AGGRESSIVE_FIXABLES = '["ALL"]';
 const AGGRESSIVE_UNFIXABLES = '[]';

@@ -1,5 +1,11 @@
 # Python Config Change Log
 
+## Version 12.4.0: Aug 23, 2024
+
+- **Info**: Bumped versions
+- **Info**: Removed not python related settings
+- **Info**: Updated ruff's selects and ignores in aggressive setting
+
 ## Version 12.3.0: Jul 19, 2024
 
 - **Info**: Added sort imports an save in aggressive mode (currently isort only, and not ruff)
