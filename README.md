@@ -19,7 +19,7 @@ General IDE Files in the root directory (*):
 
 - .editorconfig: Standard file settings (line-feed, insert new-line, etc.)
 - .gitattributes: Gives attributes to pathnames
-- .gitingore: Specifies intentionally untracked files to ignore
+- .gitignore: Specifies intentionally untracked files to ignore
 
 Files for python projects (has a project defined in pyproject.toml or setup.py/cfg) (*):
 

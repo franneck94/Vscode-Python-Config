@@ -305,7 +305,7 @@
 
 ## Version 0.2.0: September 26, 2021
 
-- **Improvement**: Added **.gitattributes** and **.gitingore**
+- **Improvement**: Added **.gitattributes** and **.gitignore**
 
 ## Version 0.1.0: September 25, 2021
 
